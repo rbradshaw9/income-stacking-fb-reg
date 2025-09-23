@@ -117,6 +117,20 @@ export class FormSubmissionHandler {
   }
 
   /**
+   * Extract form data from the form fields
+   */
+  extractFormData() {
+    const formData = new FormData(this.form);
+    return {
+      first_name: formData.get('first_name')?.trim(),
+      last_name: formData.get('last_name')?.trim(),
+      email: formData.get('email')?.trim(),
+      phone: formData.get('phone')?.trim(),
+      consent: formData.get('consent') === 'on'  // Checkbox value
+    };
+  }
+
+  /**
    * Generate unique customer ID
    */
   generateCID() {
