@@ -48,6 +48,10 @@ export class FormSubmissionHandler {
     try {
       // Extract form data
       const data = this.extractFormData();
+      console.warn('Form data extracted:', {
+        ...data,
+        email: data.email ? '***@***.***' : undefined // Mask email for privacy
+      });
       let cid = null;
       let wfResponse = null;
       
@@ -126,7 +130,7 @@ export class FormSubmissionHandler {
       last_name: formData.get('last_name')?.trim(),
       email: formData.get('email')?.trim(),
       phone: formData.get('phone')?.trim(),
-      consent: formData.get('consent') === 'on'  // Checkbox value
+      consent: formData.get('sms_consent') === 'on'  // Checkbox value using correct field name
     };
   }
 
