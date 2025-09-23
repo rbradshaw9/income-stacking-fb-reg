@@ -40,7 +40,7 @@ export class FormSubmissionHandler {
     event.preventDefault();
     
     if (this.isSubmitting || this.hasSubmitted) {
-      console.warn('Form submission blocked: already submitting or previously submitted');
+      console.warn('Form submission blocked: already submitting or previously submitted during this session');
       return;
     }
 
@@ -49,13 +49,6 @@ export class FormSubmissionHandler {
     try {
       // Extract form data
       const data = this.extractFormData();
-      
-      // Check for duplicate email submission
-      const submittedEmails = JSON.parse(localStorage.getItem('submitted_emails') || '[]');
-      if (submittedEmails.includes(data.email?.toLowerCase())) {
-        this.showError('This email address has already been registered for this webinar.');
-        return;
-      }
       console.warn('Form data extracted:', {
         ...data,
         email: data.email ? '***@***.***' : undefined // Mask email for privacy
@@ -96,12 +89,7 @@ export class FormSubmissionHandler {
       
       // Redirect to confirmation page IMMEDIATELY - don't wait for Infusionsoft
       if (wfCid) {
-        // Store email to prevent duplicate submissions
-        const submittedEmails = JSON.parse(localStorage.getItem('submitted_emails') || '[]');
-        submittedEmails.push(data.email?.toLowerCase());
-        localStorage.setItem('submitted_emails', JSON.stringify(submittedEmails));
-        
-        // Disable form to prevent further submissions
+        // Disable form to prevent further submissions during this session
         this.disableForm();
         
         // Mark that we've handled the redirect
