@@ -134,36 +134,56 @@ export class FormSubmissionHandler {
   }
 
   /**
-   * Submit data to Infusionsoft
+   * Submit data to Infusionsoft using hidden form (avoids CORS issues)
    */
   async submitToInfusionsoft(data, cid) {
-    const trackingParams = this.urlTracker.getInfusionsoftParameters();
-    
-    const infusionsoftData = {
-      inf_form_xid: CONFIG.INFUSIONSOFT.FORM_XID,
-      inf_form_name: CONFIG.INFUSIONSOFT.FORM_NAME,
-      infusionsoft_version: CONFIG.INFUSIONSOFT.VERSION,
-      inf_field_FirstName: data.first_name,
-      inf_field_LastName: data.last_name,
-      inf_field_Email: data.email,
-      inf_field_Phone1: data.phone || '',
-      inf_field_Custom_CID: cid,
-      ...trackingParams  // Include all UTM and tracking parameters
-    };
+    return new Promise((resolve) => {
+      const trackingParams = this.urlTracker.getInfusionsoftParameters();
+      
+      const infusionsoftData = {
+        inf_form_xid: CONFIG.INFUSIONSOFT.FORM_XID,
+        inf_form_name: CONFIG.INFUSIONSOFT.FORM_NAME,
+        infusionsoft_version: CONFIG.INFUSIONSOFT.VERSION,
+        inf_field_FirstName: data.first_name,
+        inf_field_LastName: data.last_name,
+        inf_field_Email: data.email,
+        inf_field_Phone1: data.phone || '',
+        inf_field_Custom_CID: cid,
+        ...trackingParams  // Include all UTM and tracking parameters
+      };
 
-    const response = await fetch(CONFIG.INFUSIONSOFT.BASE_URL + CONFIG.INFUSIONSOFT.ENDPOINT, {
-      method: 'POST',
-      headers: { 
-        'Content-Type': 'application/x-www-form-urlencoded' 
-      },
-      body: new URLSearchParams(infusionsoftData)
+      // Create hidden form for submission (avoids CORS)
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = CONFIG.INFUSIONSOFT.BASE_URL + CONFIG.INFUSIONSOFT.ENDPOINT;
+      form.target = '_blank';
+      form.style.display = 'none';
+
+      // Add all form fields
+      Object.entries(infusionsoftData).forEach(([key, value]) => {
+        if (value !== undefined && value !== null && value !== '') {
+          const input = document.createElement('input');
+          input.type = 'hidden';
+          input.name = key;
+          input.value = String(value);
+          form.appendChild(input);
+        }
+      });
+
+      // Add form to page and submit
+      document.body.appendChild(form);
+      
+      // Submit form in a new tab/window
+      form.submit();
+      
+      // Clean up
+      setTimeout(() => {
+        document.body.removeChild(form);
+        resolve();
+      }, 1000);
+
+      console.warn('Infusionsoft submission sent via form post');
     });
-
-    if (!response.ok) {
-      throw new Error(`Infusionsoft submission failed: ${response.status}`);
-    }
-
-    return response;
   }
 
   /**
