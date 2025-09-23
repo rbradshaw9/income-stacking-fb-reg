@@ -48,7 +48,8 @@ export const CONFIG = {
     FORM_XID: getEnvVar('INFUSIONSOFT_FORM_XID', '2d6fbc78abf8d18ab3268c6cfa02e974'),
     FORM_NAME: 'Income Stacking Web Form submitted - FACEBOOK',
     VERSION: '1.70.0.858820',
-    SUCCESS_URL: window.location.origin + '/confirmed.html?source=direct',
+    SUCCESS_URL: 'https://go.thecashflowacademy.com/confirmed-income-stacking-fb',
+    RETURN_URL: window.location.origin + '/confirmed.html',
     ENDPOINT: `/app/form/process/${getEnvVar('INFUSIONSOFT_FORM_XID', '2d6fbc78abf8d18ab3268c6cfa02e974')}`
   },
   

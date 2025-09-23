@@ -12,6 +12,20 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <!-- Redirect Check -->
+    <script>
+        // Check if we need to redirect back to our confirmation page
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const returnUrl = urlParams.get('return_url');
+            
+            if (returnUrl) {
+                // We came from our form submission, redirect back to our confirmation page
+                window.location.href = decodeURIComponent(returnUrl);
+            }
+        });
+    </script>
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
         

@@ -168,7 +168,7 @@ export class FormSubmissionHandler {
         inf_field_Email: data.email,
         inf_field_Phone1: data.phone || '',
         inf_field_Custom_CID: cid,
-        success_url: window.location.origin + '/confirmed.html?cid=' + cid + '&source=direct',
+        success_url: CONFIG.INFUSIONSOFT.SUCCESS_URL + '?return_url=' + encodeURIComponent(CONFIG.INFUSIONSOFT.RETURN_URL + '?cid=' + cid),
         ...(data.consent ? {
           inf_option_BycheckingthisboxIagreetoreceivetextmessagessuchasremindersupdatesandpromotionaloffersfromTheCashFlowAcademyatthemobilenumberprovidedMessageanddataratesmayapplyMessagefrequencyvariesConsentisnotaconditionofpurchaseReplySTOPtounsubscribe: '3893'
         } : {}),
