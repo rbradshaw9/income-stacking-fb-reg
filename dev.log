@@ -1,0 +1,157 @@
+nohup: ignoring input
+
+> income-stacking-funnel@0.0.0 dev /home/ubuntu/income-stacking-funnel
+> vite
+
+
+  VITE v6.3.5  ready in 483 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+2:49:12 PM [vite] (client) hmr update /src/App.jsx, /src/App.css
+2:49:12 PM [vite] Internal server error: /home/ubuntu/income-stacking-funnel/src/App.jsx: Unexpected token (522:81)
+
+  520 |     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 relative overflow-hidden">
+  521 |       {/* Background Elements */}
+> 522 |       <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
+      |                                                                                  ^
+  523 |       
+  524 |       {/* Header */}
+  525 |       <header className="relative z-10 bg-white/10 backdrop-blur-sm border-b border-white/20">
+  Plugin: vite:react-babel
+  File: /home/ubuntu/income-stacking-funnel/src/App.jsx:522:81
+  520|      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 relative overflow-hidden">
+  521|        {/* Background Elements */}
+  522|        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
+     |                                                                                   ^
+  523|        
+  524|        {/* Header */}
+      at constructor (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:360:19)
+      at JSXParserMixin.raise (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:6613:19)
+      at JSXParserMixin.unexpected (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:6633:16)
+      at JSXParserMixin.jsxParseIdentifier (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:4575:12)
+      at JSXParserMixin.jsxParseNamespacedName (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:4582:23)
+      at JSXParserMixin.jsxParseAttribute (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:4658:22)
+      at JSXParserMixin.jsxParseOpeningElementAfterName (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:4673:28)
+      at JSXParserMixin.jsxParseOpeningElementAt (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:4668:17)
+      at JSXParserMixin.jsxParseElementAt (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:4692:33)
+      at JSXParserMixin.jsxParseElementAt (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:4704:32)
+      at JSXParserMixin.jsxParseElement (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:4755:17)
+      at JSXParserMixin.parseExprAtom (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:4765:19)
+      at JSXParserMixin.parseExprSubscripts (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:10992:23)
+      at JSXParserMixin.parseUpdate (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:10977:21)
+      at JSXParserMixin.parseMaybeUnary (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:10957:23)
+      at JSXParserMixin.parseMaybeUnaryOrPrivate (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:10810:61)
+      at JSXParserMixin.parseExprOps (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:10815:23)
+      at JSXParserMixin.parseMaybeConditional (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:10792:23)
+      at JSXParserMixin.parseMaybeAssign (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:10745:21)
+      at /home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:10714:39
+      at JSXParserMixin.allowInAnd (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:12334:12)
+      at JSXParserMixin.parseMaybeAssignAllowIn (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:10714:17)
+      at JSXParserMixin.parseParenAndDistinguishExpression (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:11591:28)
+      at JSXParserMixin.parseExprAtom (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:11242:23)
+      at JSXParserMixin.parseExprAtom (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:4770:20)
+      at JSXParserMixin.parseExprSubscripts (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:10992:23)
+      at JSXParserMixin.parseUpdate (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:10977:21)
+      at JSXParserMixin.parseMaybeUnary (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:10957:23)
+      at JSXParserMixin.parseMaybeUnaryOrPrivate (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:10810:61)
+      at JSXParserMixin.parseExprOps (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:10815:23)
+      at JSXParserMixin.parseMaybeConditional (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:10792:23)
+      at JSXParserMixin.parseMaybeAssign (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:10745:21)
+      at JSXParserMixin.parseExpressionBase (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:10698:23)
+      at /home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:10694:39
+      at JSXParserMixin.allowInAnd (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:12329:16)
+      at JSXParserMixin.parseExpression (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:10694:17)
+      at JSXParserMixin.parseReturnStatement (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:13018:28)
+      at JSXParserMixin.parseStatementContent (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:12675:21)
+      at JSXParserMixin.parseStatementLike (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:12644:17)
+      at JSXParserMixin.parseStatementListItem (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:12624:17)
+      at JSXParserMixin.parseBlockOrModuleBlockBody (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:13192:61)
+      at JSXParserMixin.parseBlockBody (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:13185:10)
+      at JSXParserMixin.parseBlock (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:13173:10)
+      at JSXParserMixin.parseFunctionBody (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:12018:24)
+      at JSXParserMixin.parseFunctionBodyAndFinish (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:12004:10)
+      at /home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:13317:12
+      at JSXParserMixin.withSmartMixTopicForbiddingContext (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:12311:14)
+      at JSXParserMixin.parseFunction (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:13316:10)
+      at JSXParserMixin.parseFunctionStatement (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:13001:17)
+      at JSXParserMixin.parseStatementContent (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:12668:21)
+2:49:34 PM [vite] (client) hmr update /src/App.jsx, /src/App.css
+2:49:34 PM [vite] Internal server error: /home/ubuntu/income-stacking-funnel/src/App.jsx: Adjacent JSX elements must be wrapped in an enclosing tag. Did you want a JSX fragment <>...</>? (893:4)
+
+  891 |       }} />
+  892 |       </div>
+> 893 |     </div>
+      |     ^
+  894 |   )
+  895 | }
+  896 |
+  Plugin: vite:react-babel
+  File: /home/ubuntu/income-stacking-funnel/src/App.jsx:893:4
+  891|        }} />
+  892|        </div>
+  893|      </div>
+     |      ^
+  894|    )
+  895|  }
+      at constructor (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:360:19)
+      at JSXParserMixin.raise (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:6613:19)
+      at JSXParserMixin.jsxParseElementAt (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:4748:18)
+      at JSXParserMixin.jsxParseElement (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:4755:17)
+      at JSXParserMixin.parseExprAtom (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:4765:19)
+      at JSXParserMixin.parseExprSubscripts (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:10992:23)
+      at JSXParserMixin.parseUpdate (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:10977:21)
+      at JSXParserMixin.parseMaybeUnary (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:10957:23)
+      at JSXParserMixin.parseMaybeUnaryOrPrivate (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:10810:61)
+      at JSXParserMixin.parseExprOps (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:10815:23)
+      at JSXParserMixin.parseMaybeConditional (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:10792:23)
+      at JSXParserMixin.parseMaybeAssign (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:10745:21)
+      at /home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:10714:39
+      at JSXParserMixin.allowInAnd (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:12334:12)
+      at JSXParserMixin.parseMaybeAssignAllowIn (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:10714:17)
+      at JSXParserMixin.parseParenAndDistinguishExpression (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:11591:28)
+      at JSXParserMixin.parseExprAtom (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:11242:23)
+      at JSXParserMixin.parseExprAtom (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:4770:20)
+      at JSXParserMixin.parseExprSubscripts (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:10992:23)
+      at JSXParserMixin.parseUpdate (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:10977:21)
+      at JSXParserMixin.parseMaybeUnary (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:10957:23)
+      at JSXParserMixin.parseMaybeUnaryOrPrivate (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:10810:61)
+      at JSXParserMixin.parseExprOps (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:10815:23)
+      at JSXParserMixin.parseMaybeConditional (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:10792:23)
+      at JSXParserMixin.parseMaybeAssign (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:10745:21)
+      at JSXParserMixin.parseExpressionBase (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:10698:23)
+      at /home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:10694:39
+      at JSXParserMixin.allowInAnd (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:12329:16)
+      at JSXParserMixin.parseExpression (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:10694:17)
+      at JSXParserMixin.parseReturnStatement (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:13018:28)
+      at JSXParserMixin.parseStatementContent (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:12675:21)
+      at JSXParserMixin.parseStatementLike (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:12644:17)
+      at JSXParserMixin.parseStatementListItem (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:12624:17)
+      at JSXParserMixin.parseBlockOrModuleBlockBody (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:13192:61)
+      at JSXParserMixin.parseBlockBody (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:13185:10)
+      at JSXParserMixin.parseBlock (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:13173:10)
+      at JSXParserMixin.parseFunctionBody (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:12018:24)
+      at JSXParserMixin.parseFunctionBodyAndFinish (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:12004:10)
+      at /home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:13317:12
+      at JSXParserMixin.withSmartMixTopicForbiddingContext (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:12311:14)
+      at JSXParserMixin.parseFunction (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:13316:10)
+      at JSXParserMixin.parseFunctionStatement (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:13001:17)
+      at JSXParserMixin.parseStatementContent (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:12668:21)
+      at JSXParserMixin.parseStatementLike (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:12644:17)
+      at JSXParserMixin.parseModuleItem (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:12621:17)
+      at JSXParserMixin.parseBlockOrModuleBlockBody (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:13192:36)
+      at JSXParserMixin.parseBlockBody (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:13185:10)
+      at JSXParserMixin.parseProgram (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:12514:10)
+      at JSXParserMixin.parseTopLevel (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:12504:25)
+      at JSXParserMixin.parse (/home/ubuntu/income-stacking-funnel/node_modules/.pnpm/@babel+parser@7.27.2/node_modules/@babel/parser/lib/index.js:14364:10)
+2:49:48 PM [vite] (client) hmr update /src/App.jsx, /src/App.css
+2:51:26 PM [vite] (client) hmr update /src/ConfirmationPage.jsx, /src/App.css
+2:51:57 PM [vite] (client) hmr update /src/App.css
+2:52:44 PM [vite] (client) hmr update /src/App.jsx, /src/App.css
+2:52:56 PM [vite] (client) hmr update /src/App.jsx, /src/App.css
+2:53:19 PM [vite] (client) hmr update /src/App.jsx, /src/App.css
+2:53:30 PM [vite] (client) hmr update /src/App.jsx, /src/App.css
+2:54:14 PM [vite] (client) hmr update /src/App.css
+12:53:00 PM [vite] (client) hmr update /src/App.jsx, /src/App.css
+12:53:11 PM [vite] (client) hmr update /src/App.jsx, /src/App.css
+12:53:27 PM [vite] (client) page reload index.html

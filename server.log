@@ -1,0 +1,13 @@
+nohup: ignoring input
+
+> income-stacking-funnel@0.0.0 dev /home/ubuntu/income-stacking-funnel
+> vite --host
+
+Port 5173 is in use, trying another one...
+
+  VITE v6.3.5  ready in 460 ms
+
+  ➜  Local:   http://localhost:5174/
+  ➜  Network: http://169.254.0.21:5174/
+12:53:27 PM [vite] (client) page reload index.html
+12:53:27 PM [vite] (client) page reload index.html

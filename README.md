@@ -1,20 +1,21 @@
-# Income Stacking Facebook Registration Landing Page
+# Webinar Funnel Training
 
-A high-converting, mobile-optimized static HTML landing page for Andy Tanner's Income Stacking webinar registration.
+High-converting webinar registration funnel for Income Stacking training with Andy Tanner. Built with React and optimized for mobile.
 
 ## Features
-- ⚡ Lightning-fast static HTML (no React overhead)
-- 📱 Mobile-optimized for maximum conversions
-- 🔗 Integrated with Infusionsoft and Webinar Fuel
-- ⏰ Real-time countdown timer
-- ✅ Form validation with visual feedback
-- 🎯 Smooth scroll functionality
 
-## Deployment
-Optimized for Vercel deployment with automatic builds.
-
-## Performance
-- Faster loading than React versions
-- Better mobile performance
-- Higher conversion rates
-- SEO-friendly static HTML
+- Mobile-responsive design
+- - Webinar Fuel integration
+  - - Infusionsoft CRM integration
+    - - Optimized conversion flow
+      - - Professional favicon implementation
+       
+        - ## Live Site
+       
+        - Visit: https://training.thecashflowacademy.com
+       
+        - ## Recent Updates
+       
+        - - Fixed bottom button scroll functionality
+          - - Implemented new favicon with multiple sizes
+            - - Enhanced mobile responsiveness

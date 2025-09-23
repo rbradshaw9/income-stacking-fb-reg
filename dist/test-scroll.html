@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        .form-section {
+            padding: 50px 20px;
+            background: #f8fafc;
+            min-height: 50vh;
+        }
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .bottom-cta {
+            padding: 50px 20px;
+            background: linear-gradient(135deg, #ea580c, #dc2626);
+            text-align: center;
+            color: white;
+        }
+        .scroll-button {
+            background: white;
+            color: #ea580c;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        .scroll-button:hover {
+            background: #f1f5f9;
+            transform: translateY(-2px);
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        .register-btn {
+            background: #ea580c;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div>
+            <h1>MAXIMIZE YOUR INVESTMENTS</h1>
+            <p>Test page to verify scroll functionality</p>
+        </div>
+    </div>
+
+    <div class="form-section" id="registration-form">
+        <div class="form-container">
+            <h2>Secure Your FREE Spot</h2>
+            <form>
+                <input type="text" placeholder="First Name" required>
+                <input type="text" placeholder="Last Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <input type="tel" placeholder="Phone Number (Optional)">
+                <button type="submit" class="register-btn">REGISTER NOW - IT'S FREE!</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="bottom-cta">
+        <h2>Don't Miss This FREE Training</h2>
+        <p>Click the button below to test scroll functionality</p>
+        
+        <!-- Method 1: Simple anchor link -->
+        <a href="#registration-form" class="scroll-button" style="margin: 10px;">
+            ANCHOR LINK TEST
+        </a>
+        
+        <!-- Method 2: JavaScript onclick -->
+        <button class="scroll-button" onclick="scrollToForm()" style="margin: 10px;">
+            JAVASCRIPT TEST
+        </button>
+        
+        <!-- Method 3: Event listener -->
+        <button class="scroll-button" id="event-test" style="margin: 10px;">
+            EVENT LISTENER TEST
+        </button>
+    </div>
+
+    <script>
+        // Method 2: Direct function
+        function scrollToForm() {
+            const form = document.getElementById('registration-form');
+            if (form) {
+                form.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'center' 
+                });
+                setTimeout(() => {
+                    const firstInput = form.querySelector('input');
+                    if (firstInput) {
+                        firstInput.focus();
+                    }
+                }, 800);
+            }
+        }
+
+        // Method 3: Event listener
+        document.getElementById('event-test').addEventListener('click', function() {
+            scrollToForm();
+        });
+
+        // Add smooth scrolling CSS for anchor links
+        document.documentElement.style.scrollBehavior = 'smooth';
+    </script>
+</body>
+</html>
