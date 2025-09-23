@@ -61,8 +61,11 @@ function renderDateTime(dateObj) {
   // Update the main webinar date element
   const webinarDateEl = document.getElementById('webinar-date');
   if (webinarDateEl) {
-    // Display the formatted date
-    webinarDateEl.innerHTML = `<strong>${longDate}</strong>`;
+    // Display the formatted date with time zones
+    webinarDateEl.innerHTML = `
+      <div><strong>${longDate}</strong></div>
+      <div class="text-sm text-blue-600 mt-1">${timeDisplays}</div>
+    `;
     webinarDateEl.classList.remove('animate-pulse');
   }
 
@@ -99,7 +102,10 @@ function displayFallbackDate() {
   
   const webinarDateEl = document.getElementById('webinar-date');
   if (webinarDateEl) {
-    webinarDateEl.innerHTML = '<strong>Tuesday, January 14th</strong>';
+    webinarDateEl.innerHTML = `
+      <div><strong>Tuesday, January 14th</strong></div>
+      <div class="text-sm text-blue-600 mt-1">11:00 PM PT | 12:00 AM MT | 1:00 AM CT | 2:00 AM ET</div>
+    `;
     webinarDateEl.classList.remove('animate-pulse');
   }
   

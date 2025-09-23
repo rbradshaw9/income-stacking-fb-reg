@@ -69,8 +69,8 @@ export const CONFIG = {
   FORM: {
     VALIDATION_COLORS: {
       first_name: 'border-green-500',
-      last_name: 'border-blue-500', 
-      email: 'border-orange-500'
+      last_name: 'border-green-500', 
+      email: 'border-green-500'
     }
   }
 };
