@@ -170,9 +170,12 @@ export class FormSubmissionHandler {
    * Submit data to Webinar Fuel
    */
   async submitToWebinarFuel(data, _cid) {
-    // Default to Tuesday session, but this could be made dynamic
-    const sessionId = CONFIG.WEBINAR_FUEL.SESSIONS.TUESDAY;
+    // Use session ID determined from scraped webinar date, fallback to Tuesday
+    const sessionId = window.webinarSessionId || CONFIG.WEBINAR_FUEL.SESSIONS.TUESDAY;
     const trackingParams = this.urlTracker.getParameters();
+    
+    console.warn('Using Webinar Fuel session ID:', sessionId, 
+                 window.webinarDayOfWeek ? `(${window.webinarDayOfWeek})` : '(fallback)');
     
     const webinarFuelData = {
       version_id: CONFIG.WEBINAR_FUEL.WIDGET.VERSION_ID,

@@ -12,6 +12,12 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <!-- Day.js for robust date handling -->
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/utc.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/timezone.js"></script>
+    <script>dayjs.extend(dayjs_plugin_utc); dayjs.extend(dayjs_plugin_timezone);</script>
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
         
@@ -359,6 +365,16 @@
             </a>
         </div>
     </section>
+
+    <!-- Hidden WebinarFuel widget for date scraping -->
+    <div style="position:absolute; left:-9999px; top:-9999px; width:1px; height:1px; overflow:hidden;">
+        <script src="https://d3pw37i36t41cq.cloudfront.net/embed_v2.js" async></script>
+        <div class="wf_target wf_target_66235"></div>
+        <script>
+            window._wf = window._wf || [];
+            _wf.push({ id: '66235' });
+        </script>
+    </div>
 
     <!-- Footer -->
     <footer class="bg-slate-900 text-white py-8">

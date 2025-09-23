@@ -1,6 +1,6 @@
 import { CONFIG } from './config.js';
 import { CountdownTimer } from './countdown.js';
-import { WebinarDateFetcher } from './webinar-date.js';
+import { initWebinarDate } from './webinar-date.js';
 import { FormValidator } from './form-validator.js';
 import { FormSubmissionHandler } from './form-submission.js';
 import { URLParameterTracker } from './url-tracker.js';
@@ -11,7 +11,6 @@ import { URLParameterTracker } from './url-tracker.js';
 class IncomeStackingApp {
   constructor() {
     this.countdownTimer = null;
-    this.webinarDateFetcher = null;
     this.formValidator = null;
     this.formSubmissionHandler = null;
     this.urlTracker = null;
@@ -33,9 +32,8 @@ class IncomeStackingApp {
       });
       this.countdownTimer.start();
 
-      // Initialize webinar date fetcher
-      this.webinarDateFetcher = new WebinarDateFetcher('webinar-date');
-      this.webinarDateFetcher.fetchAndDisplay();
+      // Initialize webinar date functionality
+      initWebinarDate();
 
       // Initialize form validation
       this.formValidator = new FormValidator('registration-form-element');
