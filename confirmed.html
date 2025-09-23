@@ -43,6 +43,12 @@
             background-clip: text;
         }
 
+        .sticky-col {
+            position: sticky;
+            top: 2rem;
+            height: fit-content;
+        }
+
         .success-animation {
             animation: successPulse 2s ease-in-out infinite;
         }
@@ -55,7 +61,7 @@
 </head>
 <body class="bg-gray-50">
     <!-- Confirmation Section -->
-    <section class="bg-gradient-to-br from-slate-800 via-slate-900 to-black min-h-screen flex items-center relative overflow-hidden">
+    <section class="bg-gradient-to-br from-slate-800 via-slate-900 to-black min-h-screen relative overflow-hidden py-8 md:py-12">
         <!-- Background Elements -->
         <div class="absolute inset-0 opacity-10">
             <div class="absolute top-20 left-20 w-72 h-72 bg-yellow-500 rounded-full blur-3xl"></div>
@@ -63,85 +69,90 @@
             <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-blue-500 rounded-full blur-3xl"></div>
         </div>
 
-        <div class="container mx-auto px-4 py-12 relative z-10">
-            <div class="max-w-4xl mx-auto text-center">
+        <div class="container mx-auto px-4 relative z-10">
+            <!-- Two Column Layout -->
+            <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                <!-- Left Column: Main Content -->
+                <div class="space-y-6">
                 
-                <!-- Success Icon -->
-                <div class="mb-8">
-                    <div class="inline-flex items-center justify-center w-24 h-24 bg-green-500 rounded-full success-animation">
-                        <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
-                        </svg>
+                    <!-- Success Icon & Headlines -->
+                    <div class="text-center md:text-left mb-8">
+                        <div class="inline-flex items-center justify-center w-20 h-20 bg-green-500 rounded-full success-animation mb-6">
+                            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                        <h1 class="text-4xl md:text-5xl font-black text-white mb-4 leading-tight">
+                            🎉 <span class="gradient-text">YOU'RE IN!</span>
+                        </h1>
+                        <h2 class="text-xl md:text-2xl font-bold text-gray-200">
+                            Your Registration is Confirmed
+                        </h2>
+                    </div>
+
+                    <!-- Next Steps -->
+                    <div class="bg-gradient-to-r from-yellow-500/20 to-red-500/20 rounded-xl p-6 card-shadow">
+                        <h3 class="text-xl font-bold text-white mb-4">📋 Next Steps</h3>
+                        <div class="space-y-3 text-gray-200">
+                            <p class="flex items-center space-x-3">
+                                <span class="text-yellow-400 font-bold">1.</span>
+                                <span>Check your email for access details</span>
+                            </p>
+                            <p class="flex items-center space-x-3">
+                                <span class="text-yellow-400 font-bold">2.</span>
+                                <span>Add to calendar - don't miss out!</span>
+                            </p>
+                            <p class="flex items-center space-x-3">
+                                <span class="text-yellow-400 font-bold">3.</span>
+                                <span>Join 15 minutes early to secure your spot</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Calculator CTA -->
+                    <div class="bg-white rounded-xl p-6 card-shadow">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">🧮 While You Wait...</h3>
+                        <p class="text-gray-600 mb-4">
+                            Get a head start! Use our Income Stacking Calculator to see your potential returns.
+                        </p>
+                        <a href="https://members.thecashflowacademy.com/calculator-form" 
+                           class="inline-block bg-gradient-to-r from-orange-500 to-red-500 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 btn-hover btn-active">
+                            Try the Calculator Now
+                        </a>
                     </div>
                 </div>
 
-                <!-- Main Headline -->
-                <h1 class="text-4xl md:text-6xl font-black text-white mb-6 leading-tight">
-                    🎉 <span class="gradient-text">YOU'RE IN!</span>
-                </h1>
-                
-                <h2 class="text-2xl md:text-3xl font-bold text-gray-200 mb-8">
-                    Your Registration is Confirmed
-                </h2>
+                <!-- Right Column: Webinar Access -->
+                <div class="sticky-col">
+                    <!-- Status Cards -->
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 mb-6 card-shadow">
+                        <div class="space-y-3">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                                <span class="text-white">✅ Registration confirmed</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                                <span class="text-white">📧 Confirmation email sent</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                                <span class="text-white">📅 Calendar invite included</span>
+                            </div>
+                        </div>
+                    </div>
 
-                <!-- Confirmation Details -->
-                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 mb-8 card-shadow">
-                    <div class="text-left space-y-4">
-                        <div class="flex items-center space-x-3">
-                            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
-                            <span class="text-white text-lg">✅ Registration confirmed</span>
-                        </div>
-                        <div class="flex items-center space-x-3">
-                            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
-                            <span class="text-white text-lg">📧 Confirmation email sent</span>
-                        </div>
-                        <div class="flex items-center space-x-3">
-                            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
-                            <span class="text-white text-lg">📅 Calendar invite included</span>
-                        </div>
-                        <div class="flex items-center space-x-3">
-                            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
-                            <span class="text-white text-lg">🔔 Reminder notifications enabled</span>
+                    <!-- Webinar Access Widget -->
+                    <div class="bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-xl p-6 card-shadow">
+                        <h3 class="text-xl font-bold text-white mb-3">🎥 Your Webinar Access</h3>
+                        <p class="text-gray-200 mb-4">Your personalized webinar details:</p>
+                        
+                        <!-- Webinar Fuel Widget -->
+                        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                            <div class="wf_target wf_target_xCo1kQcuJZKwRwTTXcySfXJc"></div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Next Steps -->
-                <div class="bg-gradient-to-r from-yellow-500/20 to-red-500/20 rounded-2xl p-8 mb-8 card-shadow">
-                    <h3 class="text-2xl font-bold text-white mb-4">📋 What Happens Next?</h3>
-                    <div class="text-left space-y-3 text-gray-200">
-                        <p class="flex items-start space-x-2">
-                            <span class="text-yellow-400 font-bold">1.</span>
-                            <span>Check your email for the webinar access link</span>
-                        </p>
-                        <p class="flex items-start space-x-2">
-                            <span class="text-yellow-400 font-bold">2.</span>
-                            <span>Add the event to your calendar so you don't miss it</span>
-                        </p>
-                        <p class="flex items-start space-x-2">
-                            <span class="text-yellow-400 font-bold">3.</span>
-                            <span>Join 15 minutes early to secure your spot</span>
-                        </p>
-                        <p class="flex items-start space-x-2">
-                            <span class="text-yellow-400 font-bold">4.</span>
-                            <span>Bring a notebook - Andy shares actionable strategies!</span>
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Webinar Access Section -->
-                <div class="bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl p-8 mb-8 card-shadow">
-                    <h3 class="text-2xl font-bold text-white mb-4">🎥 Your Webinar Access</h3>
-                    <p class="text-gray-200 mb-6">Your personalized webinar link and details will appear below:</p>
-                    
-                    <!-- Webinar Fuel Widget -->
-                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-                        <div class="wf_target wf_target_xCo1kQcuJZKwRwTTXcySfXJc"></div>
-                    </div>
-                </div>
-
-                <!-- Calculator CTA -->
-                <div class="bg-white rounded-2xl p-8 mb-8 card-shadow">
                     <h3 class="text-2xl font-bold text-gray-800 mb-4">🧮 Get Started Early!</h3>
                     <p class="text-gray-600 mb-6 text-lg">
                         While you wait for the webinar, calculate your potential income stacking returns with our exclusive calculator.
