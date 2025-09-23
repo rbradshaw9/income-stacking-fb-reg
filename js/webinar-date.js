@@ -58,17 +58,6 @@ function renderDateTime(dateObj) {
   const day = dateObj.date();
   const longDate = `${dateObj.format('dddd')}, ${dateObj.format('MMMM')} ${day}${ordinal(day)}`;
 
-  // Update the main webinar date element
-  const webinarDateEl = document.getElementById('webinar-date');
-  if (webinarDateEl) {
-    // Display the formatted date with time zones
-    webinarDateEl.innerHTML = `
-      <div><strong>${longDate}</strong></div>
-      <div class="text-sm text-blue-600 mt-1">${timeDisplays}</div>
-    `;
-    webinarDateEl.classList.remove('animate-pulse');
-  }
-
   // Generate multi-timezone display
   const zones = { 
     PT: 'America/Los_Angeles', 
@@ -80,6 +69,17 @@ function renderDateTime(dateObj) {
   const timeDisplays = Object.entries(zones).map(([abbr, zone]) => 
     `${dateObj.tz(zone).format('h:mm A').toUpperCase()} ${abbr}`
   ).join(' | ');
+
+  // Update the main webinar date element
+  const webinarDateEl = document.getElementById('webinar-date');
+  if (webinarDateEl) {
+    // Display the formatted date with time zones
+    webinarDateEl.innerHTML = `
+      <div><strong>${longDate}</strong></div>
+      <div class="text-sm text-blue-600 mt-1">${timeDisplays}</div>
+    `;
+    webinarDateEl.classList.remove('animate-pulse');
+  }
 
   // Determine and store session information
   const sessionId = getSessionIdFromDate(dateObj);
