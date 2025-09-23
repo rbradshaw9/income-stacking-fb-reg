@@ -46,8 +46,9 @@ export const CONFIG = {
     ACCOUNT_ID: getEnvVar('INFUSIONSOFT_ACCOUNT_ID', 'yv932'),
     BASE_URL: `https://${getEnvVar('INFUSIONSOFT_ACCOUNT_ID', 'yv932')}.infusionsoft.com`,
     FORM_XID: getEnvVar('INFUSIONSOFT_FORM_XID', '2d6fbc78abf8d18ab3268c6cfa02e974'),
-    FORM_NAME: 'Webinar Registration',
-    VERSION: '1.70.0.77',
+    FORM_NAME: 'Income Stacking Web Form submitted - FACEBOOK',
+    VERSION: '1.70.0.858820',
+    SUCCESS_URL: window.location.origin + '/confirmed.html',
     ENDPOINT: `/app/form/process/${getEnvVar('INFUSIONSOFT_FORM_XID', '2d6fbc78abf8d18ab3268c6cfa02e974')}`
   },
   

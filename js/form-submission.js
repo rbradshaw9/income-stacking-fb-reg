@@ -168,6 +168,7 @@ export class FormSubmissionHandler {
         inf_field_Email: data.email,
         inf_field_Phone1: data.phone || '',
         inf_field_Custom_CID: cid,
+        success_url: window.location.origin + '/confirmed.html?cid=' + cid,
         ...(data.consent ? {
           inf_option_BycheckingthisboxIagreetoreceivetextmessagessuchasremindersupdatesandpromotionaloffersfromTheCashFlowAcademyatthemobilenumberprovidedMessageanddataratesmayapplyMessagefrequencyvariesConsentisnotaconditionofpurchaseReplySTOPtounsubscribe: '3893'
         } : {}),
@@ -210,6 +211,12 @@ export class FormSubmissionHandler {
       // Add form to page and submit
       document.body.appendChild(form);
       
+      // Log form submission details
+      console.warn('Submitting Infusionsoft form with data:', {
+        ...infusionsoftData,
+        email: '***@***.***' // Mask email for privacy
+      });
+
       // Add form to body and submit in hidden iframe
       document.body.appendChild(form);
       form.submit();
