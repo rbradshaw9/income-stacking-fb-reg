@@ -116,9 +116,40 @@ function watchWFDate(maxRetries = 160) {
   let tries = 0;
   
   function tick() {
-    // Look for the WebinarFuel dropdown value
-    const el = document.querySelector('.wf_dropdown_value_container .wf_dropdown_value');
-    const raw = el?.textContent?.trim() || '';
+    // Try multiple selectors for WebinarFuel date elements
+    const selectors = [
+      '.wf_dropdown_value_container .wf_dropdown_value',
+      '.wf_dropdown_value',
+      '[class*="wf_dropdown"] [class*="value"]',
+      '.wf_target select option:checked',
+      '.wf_target select option[selected]',
+      '.wf_element_dropdown select',
+      '.wf_element_dropdown option:checked'
+    ];
+    
+    let el = null;
+    let raw = '';
+    
+    for (const selector of selectors) {
+      el = document.querySelector(selector);
+      if (el) {
+        raw = el.textContent?.trim() || el.value?.trim() || '';
+        if (raw) {
+          break;
+        }
+      }
+    }
+    
+    // Debug: Log what we're finding
+    if (tries % 20 === 0) { // Log every 10 seconds
+      console.warn('[WebinarDate] Searching for WF date...', {
+        attempt: tries,
+        foundElement: !!el,
+        textContent: raw,
+        elementSelector: el ? `${el.tagName}.${el.className}` : null,
+        allWFElements: document.querySelectorAll('[class*="wf_"]').length
+      });
+    }
     
     if (raw.includes('@')) {
       const dateObj = parseWFDateText(raw);
@@ -134,6 +165,13 @@ function watchWFDate(maxRetries = 160) {
       setTimeout(tick, 500);
     } else {
       console.warn('[WebinarDate] Failed to scrape date after', maxRetries, 'attempts');
+      console.warn('[WebinarDate] Final DOM state:', {
+        wfElements: Array.from(document.querySelectorAll('[class*="wf_"]')).map(el => ({
+          className: el.className,
+          textContent: el.textContent?.trim(),
+          tagName: el.tagName
+        }))
+      });
       displayFallbackDate();
     }
   }
