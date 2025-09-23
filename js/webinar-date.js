@@ -16,11 +16,16 @@ export class WebinarDateFetcher {
   /**
    * Fetch webinar dates from API and display them
    */
+  /**
+   * Fetch webinar dates from API and display them
+   */
   async fetchAndDisplay() {
     try {
       // Default to Tuesday session for date display
       const sessionId = CONFIG.WEBINAR_FUEL.SESSIONS.TUESDAY;
       const url = `${CONFIG.WEBINAR_FUEL.BASE_URL}${CONFIG.WEBINAR_FUEL.ENDPOINTS.DATES}?session_id=${sessionId}`;
+      
+      console.warn('Attempting to fetch webinar date from:', url);
       
       const response = await fetch(url, {
         headers: {
@@ -29,7 +34,7 @@ export class WebinarDateFetcher {
       });
       
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`);
       }
       
       const data = await response.json();
@@ -39,11 +44,12 @@ export class WebinarDateFetcher {
         const formattedDate = this.formatDate(nextDate);
         this.displayDate(formattedDate);
       } else {
-        console.warn('No webinar dates received from API');
+        console.warn('No webinar dates received from API, using fallback');
         this.displayFallbackDate();
       }
     } catch (error) {
       console.warn('Failed to fetch webinar date:', error.message);
+      console.warn('Using fallback date instead');
       this.displayFallbackDate();
     }
   }
