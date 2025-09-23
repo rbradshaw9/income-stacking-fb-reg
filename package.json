@@ -1,0 +1,37 @@
+{
+  "name": "income-stacking-fb-reg",
+  "version": "1.0.0",
+  "description": "High-converting webinar registration funnel for Income Stacking training with Andy Tanner",
+  "type": "module",
+  "scripts": {
+    "dev": "python3 -m http.server 8000",
+    "serve": "python3 -m http.server 8000",
+    "lint": "eslint . --ext .js,.html --fix",
+    "lint:check": "eslint . --ext .js,.html"
+  },
+  "keywords": [
+    "webinar",
+    "registration",
+    "funnel",
+    "income-stacking",
+    "landing-page"
+  ],
+  "author": "The Cash Flow Academy",
+  "license": "MIT",
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "eslint": "^9.0.0",
+    "eslint-plugin-html": "^8.0.0",
+    "globals": "^15.0.0"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rbradshaw9/income-stacking-fb-reg.git"
+  },
+  "homepage": "https://training.thecashflowacademy.com"
+}
