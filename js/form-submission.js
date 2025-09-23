@@ -84,10 +84,12 @@ export class FormSubmissionHandler {
       const wfCid = localStorage.getItem('_wf_cid');
       
       // Short delay to ensure both submissions are processed
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      await new Promise(resolve => setTimeout(resolve, 1000));
       
-      // Redirect to confirmation page
+      // Redirect to confirmation page IMMEDIATELY - don't wait for Infusionsoft
       if (wfCid) {
+        // Mark that we've handled the redirect
+        this.hasSubmitted = true;
         window.location.href = `confirmed.html?cid=${wfCid}`;
       } else {
         throw new Error('No WebinarFuel CID available for redirect');
@@ -168,7 +170,7 @@ export class FormSubmissionHandler {
         inf_field_Email: data.email,
         inf_field_Phone1: data.phone || '',
         inf_field_Custom_CID: cid,
-        success_url: CONFIG.INFUSIONSOFT.SUCCESS_URL + '?return_url=' + encodeURIComponent(CONFIG.INFUSIONSOFT.RETURN_URL + '?cid=' + cid),
+        // Remove success_url to prevent any redirect
         ...(data.consent ? {
           inf_option_BycheckingthisboxIagreetoreceivetextmessagessuchasremindersupdatesandpromotionaloffersfromTheCashFlowAcademyatthemobilenumberprovidedMessageanddataratesmayapplyMessagefrequencyvariesConsentisnotaconditionofpurchaseReplySTOPtounsubscribe: '3893'
         } : {}),
@@ -184,6 +186,7 @@ export class FormSubmissionHandler {
         iframe.id = iframeId;
         iframe.name = iframeId;
         iframe.style.display = 'none';
+        iframe.sandbox = 'allow-forms allow-scripts allow-same-origin'; // Restrict iframe capabilities
         document.body.appendChild(iframe);
       }
 
@@ -191,8 +194,6 @@ export class FormSubmissionHandler {
       const form = document.createElement('form');
       form.method = 'POST';
       form.action = `${CONFIG.INFUSIONSOFT.BASE_URL}/app/form/process/${CONFIG.INFUSIONSOFT.FORM_XID}`;
-      // Add success_url to action to ensure it overrides any default settings
-      form.action += `?success_url=${encodeURIComponent(window.location.origin + '/confirmed.html?cid=' + cid + '&source=direct')}`;
       form.target = iframeId;
       form.style.display = 'none';
       form.className = 'infusion-form';
