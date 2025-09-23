@@ -323,11 +323,11 @@ export class FormSubmissionHandler {
       if (isSubmitting) {
         this.submitButton.disabled = true;
         
-        let buttonText = 'Submitting...';
+        let buttonText = 'Just a moment...';
         if (step === 'infusionsoft') {
-          buttonText = 'Saving to CRM...';
+          buttonText = 'Almost ready...';
         } else if (step === 'webinarfuel') {
-          buttonText = 'Registering for Webinar...';
+          buttonText = 'Securing your spot...';
         }
         
         this.submitButton.innerHTML = `
