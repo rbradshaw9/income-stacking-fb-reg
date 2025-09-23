@@ -39,7 +39,8 @@ export class FormSubmissionHandler {
   async handleSubmit(event) {
     event.preventDefault();
     
-    if (this.isSubmitting) {
+    if (this.isSubmitting || this.hasSubmitted) {
+      console.warn('Form submission blocked: already submitting or previously submitted');
       return;
     }
 
@@ -48,6 +49,13 @@ export class FormSubmissionHandler {
     try {
       // Extract form data
       const data = this.extractFormData();
+      
+      // Check for duplicate email submission
+      const submittedEmails = JSON.parse(localStorage.getItem('submitted_emails') || '[]');
+      if (submittedEmails.includes(data.email?.toLowerCase())) {
+        this.showError('This email address has already been registered for this webinar.');
+        return;
+      }
       console.warn('Form data extracted:', {
         ...data,
         email: data.email ? '***@***.***' : undefined // Mask email for privacy
@@ -88,9 +96,21 @@ export class FormSubmissionHandler {
       
       // Redirect to confirmation page IMMEDIATELY - don't wait for Infusionsoft
       if (wfCid) {
+        // Store email to prevent duplicate submissions
+        const submittedEmails = JSON.parse(localStorage.getItem('submitted_emails') || '[]');
+        submittedEmails.push(data.email?.toLowerCase());
+        localStorage.setItem('submitted_emails', JSON.stringify(submittedEmails));
+        
+        // Disable form to prevent further submissions
+        this.disableForm();
+        
         // Mark that we've handled the redirect
         this.hasSubmitted = true;
-        window.location.href = `confirmed.html?cid=${wfCid}`;
+        
+        // Small delay to show success state
+        setTimeout(() => {
+          window.location.href = `confirmed.html?cid=${wfCid}`;
+        }, 1500);
       } else {
         throw new Error('No WebinarFuel CID available for redirect');
       }
@@ -355,6 +375,23 @@ export class FormSubmissionHandler {
         this.submitButton.disabled = false;
         this.submitButton.innerHTML = 'REGISTER NOW - IT\'S FREE!';
       }
+    }
+  }
+
+  /**
+   * Disable the form after successful submission
+   */
+  disableForm() {
+    // Disable all form inputs
+    const inputs = this.form.querySelectorAll('input, button');
+    inputs.forEach(input => {
+      input.disabled = true;
+    });
+    
+    // Update button to show success state
+    if (this.submitButton) {
+      this.submitButton.innerHTML = '✅ Registration Complete - Redirecting...';
+      this.submitButton.className = this.submitButton.className.replace(/bg-gradient-to-r from-red-600 to-red-700/, 'bg-green-600');
     }
   }
 
