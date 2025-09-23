@@ -168,7 +168,7 @@ export class FormSubmissionHandler {
         inf_field_Email: data.email,
         inf_field_Phone1: data.phone || '',
         inf_field_Custom_CID: cid,
-        success_url: window.location.origin + '/confirmed.html?cid=' + cid,
+        success_url: window.location.origin + '/confirmed.html?cid=' + cid + '&source=direct',
         ...(data.consent ? {
           inf_option_BycheckingthisboxIagreetoreceivetextmessagessuchasremindersupdatesandpromotionaloffersfromTheCashFlowAcademyatthemobilenumberprovidedMessageanddataratesmayapplyMessagefrequencyvariesConsentisnotaconditionofpurchaseReplySTOPtounsubscribe: '3893'
         } : {}),
@@ -191,6 +191,8 @@ export class FormSubmissionHandler {
       const form = document.createElement('form');
       form.method = 'POST';
       form.action = `${CONFIG.INFUSIONSOFT.BASE_URL}/app/form/process/${CONFIG.INFUSIONSOFT.FORM_XID}`;
+      // Add success_url to action to ensure it overrides any default settings
+      form.action += `?success_url=${encodeURIComponent(window.location.origin + '/confirmed.html?cid=' + cid + '&source=direct')}`;
       form.target = iframeId;
       form.style.display = 'none';
       form.className = 'infusion-form';
