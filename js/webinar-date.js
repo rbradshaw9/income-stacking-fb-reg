@@ -18,9 +18,15 @@ export class WebinarDateFetcher {
    */
   async fetchAndDisplay() {
     try {
-      const url = `${CONFIG.WEBINAR_FUEL.BASE_URL}${CONFIG.WEBINAR_FUEL.ENDPOINTS.DATES}?webinar_id=${CONFIG.WEBINAR_FUEL.WEBINAR_ID}`;
+      // Default to Tuesday session for date display
+      const sessionId = CONFIG.WEBINAR_FUEL.SESSIONS.TUESDAY;
+      const url = `${CONFIG.WEBINAR_FUEL.BASE_URL}${CONFIG.WEBINAR_FUEL.ENDPOINTS.DATES}?session_id=${sessionId}`;
       
-      const response = await fetch(url);
+      const response = await fetch(url, {
+        headers: {
+          'Authorization': `Bearer ${CONFIG.WEBINAR_FUEL.API_KEY}`
+        }
+      });
       
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);

@@ -3,6 +3,7 @@ import { CountdownTimer } from './countdown.js';
 import { WebinarDateFetcher } from './webinar-date.js';
 import { FormValidator } from './form-validator.js';
 import { FormSubmissionHandler } from './form-submission.js';
+import { URLParameterTracker } from './url-tracker.js';
 
 /**
  * Main application class for the Income Stacking registration funnel
@@ -13,6 +14,7 @@ class IncomeStackingApp {
     this.webinarDateFetcher = null;
     this.formValidator = null;
     this.formSubmissionHandler = null;
+    this.urlTracker = null;
   }
 
   /**
@@ -20,6 +22,10 @@ class IncomeStackingApp {
    */
   init() {
     try {
+      // Initialize URL parameter tracking first
+      this.urlTracker = new URLParameterTracker();
+      this.urlTracker.loadStoredParameters();
+
       // Initialize countdown timer
       this.countdownTimer = new CountdownTimer('countdown', {
         minutes: CONFIG.COUNTDOWN.INITIAL_MINUTES,
@@ -38,6 +44,8 @@ class IncomeStackingApp {
       // Initialize form submission
       this.formSubmissionHandler = new FormSubmissionHandler('registration-form-element');
       this.formSubmissionHandler.initialize();
+
+      // Tracking parameters captured successfully
 
       // Successfully initialized
     } catch (error) {

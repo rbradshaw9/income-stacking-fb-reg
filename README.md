@@ -73,7 +73,30 @@ npm run dev
 
 The application will be available at `http://localhost:8000`
 
-### Deployment
+### Production Deployment
+
+**🔒 IMPORTANT: For production, set these environment variables in your hosting platform:**
+
+```bash
+# Webinar Fuel Configuration
+WEBINAR_FUEL_API_KEY=Dp2kG9Vucpyq5t5RVPqvDxfU
+WEBINAR_FUEL_SESSION_TUESDAY=66235
+WEBINAR_FUEL_SESSION_SATURDAY=66238
+WEBINAR_FUEL_WIDGET_ID=75116
+WEBINAR_FUEL_WIDGET_VERSION=126465
+
+# Infusionsoft Configuration
+INFUSIONSOFT_ACCOUNT_ID=yv932
+INFUSIONSOFT_FORM_XID=2d6fbc78abf8d18ab3268c6cfa02e974
+```
+
+**Hosting Platform Setup:**
+- **Vercel**: Add variables in Project Settings → Environment Variables
+- **Netlify**: Add variables in Site Settings → Environment Variables  
+- **GitHub Pages**: Use GitHub Secrets for Actions deployment
+- **Other platforms**: Follow their environment variable documentation
+
+### Security
 
 No build process needed! Simply upload all files to any static hosting:
 
@@ -82,6 +105,8 @@ No build process needed! Simply upload all files to any static hosting:
 - **GitHub Pages**: Push to gh-pages branch
 - **AWS S3**: Upload files directly
 - **Any web server**: Copy all files to web root
+
+**⚠️ Security Note**: API credentials have fallback values for development but should be set as environment variables for production to prevent exposure.
 
 ### Code Quality
 

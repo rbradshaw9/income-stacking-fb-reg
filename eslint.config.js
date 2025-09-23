@@ -11,6 +11,7 @@ export default [
       globals: {
         ...globals.browser,
         ...globals.es2022,
+        ...globals.node, // Allow Node.js globals like process
       },
       parserOptions: {
         ecmaVersion: 'latest',
