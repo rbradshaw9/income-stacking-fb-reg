@@ -81,6 +81,15 @@ function renderDateTime(dateObj) {
     webinarDateEl.classList.remove('animate-pulse');
   }
 
+  // Update the user timezone display
+  const userTimezoneEl = document.getElementById('user-timezone');
+  if (userTimezoneEl) {
+    const userTimezone = dayjs.tz.guess();
+    const userTime = dateObj.tz(userTimezone).format('h:mm A');
+    const timezoneName = userTimezone.split('/').pop().replace('_', ' ');
+    userTimezoneEl.textContent = `Your time: ${userTime} (${timezoneName})`;
+  }
+
   // Determine and store session information
   const sessionId = getSessionIdFromDate(dateObj);
   const dayOfWeek = dateObj.format('dddd');
@@ -107,6 +116,16 @@ function displayFallbackDate() {
       <div class="text-sm text-blue-600 mt-1">11:00 PM PT | 12:00 AM MT | 1:00 AM CT | 2:00 AM ET</div>
     `;
     webinarDateEl.classList.remove('animate-pulse');
+  }
+  
+  // Update the user timezone display with fallback
+  const userTimezoneEl = document.getElementById('user-timezone');
+  if (userTimezoneEl) {
+    const userTimezone = dayjs.tz.guess();
+    const fallbackDate = dayjs('2025-01-14 8:00 PM', 'YYYY-MM-DD h:mm A');
+    const userTime = fallbackDate.tz(userTimezone).format('h:mm A');
+    const timezoneName = userTimezone.split('/').pop().replace('_', ' ');
+    userTimezoneEl.textContent = `Your time: ${userTime} (${timezoneName})`;
   }
   
   // Set fallback session info
