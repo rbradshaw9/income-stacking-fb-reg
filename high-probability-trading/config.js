@@ -14,8 +14,8 @@ window.PAGE_CONFIG = {
   // WebinarFuel settings for this webinar
   webinarfuel: {
     sessionId: '70047',        // Single session ID for all days/times
-    widgetId: '80341',         // Widget ID from URL
-    widgetVersion: '132190',   // Widget version from URL
+    widgetId: '80345',         // Widget ID from WebinarFuel
+    widgetVersion: '132194',   // Widget version from WebinarFuel
     registrationWidget: 'Mr18Vw5GKr31qNMPbNKJHGmo',
     apiKey: 'Dp2kG9Vucpyq5t5RVPqvDxfU',
     source: 'GHL - Reg Page'
