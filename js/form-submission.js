@@ -239,21 +239,41 @@ export class FormSubmissionHandler {
       document.body.appendChild(form);
       form.submit();
       
-      // Handle submission completion
+      console.warn('Infusionsoft submission sent via form post');
+      
+      // Handle submission completion with timeout fallback
+      let resolved = false;
+      
       iframe.onload = () => {
-        // Give time for the submission to process before cleanup
-        setTimeout(() => {
+        if (!resolved) {
+          resolved = true;
+          // Give time for the submission to process before cleanup
+          setTimeout(() => {
+            try {
+              document.body.removeChild(form);
+              // Keep iframe for potential reuse
+            } catch (e) {
+              console.warn('Cleanup error:', e);
+            }
+            console.warn('Infusionsoft submission completed (iframe loaded)');
+            resolve();
+          }, 1000);
+        }
+      };
+      
+      // Timeout fallback - don't hang forever waiting for iframe
+      setTimeout(() => {
+        if (!resolved) {
+          resolved = true;
           try {
             document.body.removeChild(form);
-            // Keep iframe for potential reuse
           } catch (e) {
             console.warn('Cleanup error:', e);
           }
+          console.warn('Infusionsoft submission timeout - proceeding anyway');
           resolve();
-        }, 2000);
-      };
-
-      console.warn('Infusionsoft submission sent via form post');
+        }
+      }, 3000); // 3 second timeout
     });
   }
 
