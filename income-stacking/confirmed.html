@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Confirmed - Income Stacking Webinar</title>
+    <meta name="description" content="Your registration is confirmed! Get ready for Andy Tanner's Income Stacking masterclass.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/favicons/favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicons/favicon-180x180.png">
+    <link rel="shortcut icon" href="../assets/favicons/favicon.ico">
+    
+    <!-- Page-specific configuration (loads first) -->
+    <script src="config.js"></script>
+    
+    <!-- Mida A/B Testing Script (Place in <HEAD> for speed & no flicker) -->
+    <script type="text/javascript" async src="https://cdn.mida.so/js/optimize.js?key=oGbNAlraYn2yAYxvJV54EL"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Redirect Check -->
+    <script>
+        // Check if we need to redirect back to our confirmation page
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const returnUrl = urlParams.get('return_url');
+            
+            if (returnUrl) {
+                // We came from our form submission, redirect back to our confirmation page
+                window.location.href = decodeURIComponent(returnUrl);
+            }
+        });
+    </script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .card-shadow {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .btn-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-active:active {
+            transform: translateY(0);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .sticky-col {
+            position: sticky;
+            top: 2rem;
+            height: fit-content;
+        }
+
+        .success-animation {
+            animation: successPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes successPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+
+    <div class="min-h-screen bg-gradient-to-b from-gray-900 to-slate-800 py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto">
+
+            <!-- Header -->
+            <div class="text-center mb-10">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-green-500/20 text-green-400 rounded-full mb-4">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+                <h1 class="text-4xl sm:text-5xl font-extrabold gradient-text mb-2">You're All Set!</h1>
+                <p class="text-lg sm:text-xl text-gray-300">Your spot for the Income Stacking webinar is confirmed.</p>
+            </div>
+
+            <!-- Webinar Details Card -->
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 sm:p-8 mb-8 border border-white/10 card-shadow">
+                <h2 class="text-2xl font-bold text-center mb-4">Your Webinar Details</h2>
+                <p class="text-center text-gray-400 mb-6">Your personalized access link and schedule will appear below.</p>
+                <div class="bg-black/20 rounded-xl p-4">
+                    <div class="wf_target wf_target_xCo1kQcuJZKwRwTTXcySfXJc"></div>
+                </div>
+            </div>
+
+            <!-- Next Steps -->
+            <div class="grid sm:grid-cols-2 gap-6 mb-8">
+                <div class="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
+                    <h3 class="font-bold text-lg mb-3">What's Next?</h3>
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>Check your email</li>
+                        <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>Add to your calendar</li>
+                        <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>Join 15 minutes early</li>
+                    </ul>
+                </div>
+                <div class="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
+                    <h3 class="font-bold text-lg mb-3">Get a Head Start</h3>
+                    <p class="text-gray-300 mb-4">Use our free calculator to estimate your potential earnings before the webinar.</p>
+                    <a href="https://members.thecashflowacademy.com/calculator-form" 
+                       target="_blank"
+                       class="inline-block bg-gradient-to-r from-orange-500 to-red-500 text-white font-semibold px-5 py-2.5 rounded-lg transition-transform hover:scale-105">
+                        Open Calculator
+                    </a>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="text-center text-gray-500 text-sm mt-12">
+                <p>&copy; 2024 The Cash Flow Academy. All Rights Reserved.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Webinar Fuel Embed Script -->
+    <script src="https://d3pw37i36t41cq.cloudfront.net/embed_v2.js" async></script>
+
+    <script>
+        // Initialize Webinar Fuel widget
+        window._wf = window._wf || [];
+        
+        // Get customer ID from URL or localStorage
+        const urlParams = new URLSearchParams(window.location.search);
+        const cidFromUrl = urlParams.get('cid');
+        const cidFromStorage = localStorage.getItem('_wf_cid');
+        
+        // Use CID from URL first, then fall back to localStorage
+        const finalCid = cidFromUrl || cidFromStorage;
+        
+        if (finalCid) {
+            console.log('Using CID for Webinar Fuel widget:', finalCid);
+            
+            // Configure Webinar Fuel widget with CID forwarding
+            _wf.push({ 
+                id: 'xCo1kQcuJZKwRwTTXcySfXJc', 
+                forwardCid: true,
+                cid: finalCid
+            });
+            
+            // Store CID for future use if it came from URL
+            if (cidFromUrl) {
+                localStorage.setItem('_wf_cid', cidFromUrl);
+            }
+        } else {
+            console.warn('No CID found - Webinar Fuel widget may not display properly');
+            
+            // Still initialize widget without CID
+            _wf.push({ 
+                id: 'xCo1kQcuJZKwRwTTXcySfXJc', 
+                forwardCid: true 
+            });
+        }
+    </script>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white py-8 mt-16">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-sm text-gray-400 mb-4">
+                © Copyright The Cashflow Academy <span id="current-year-confirm"></span>
+            </p>
+            <div class="text-sm text-gray-400 mb-4 space-x-4">
+                <a href="https://thecashflowacademy.com/terms-and-conditions" target="_blank" class="hover:text-white transition-colors">Terms of Service</a>
+                <span>|</span>
+                <a href="https://thecashflowacademy.com/privacy-policy" target="_blank" class="hover:text-white transition-colors">Privacy Policy</a>
+                <span>|</span>
+                <a href="https://thecashflowacademy.com/disclaimer" target="_blank" class="hover:text-white transition-colors">Disclaimer</a>
+            </div>
+            <p class="text-xs text-gray-500 max-w-4xl mx-auto leading-relaxed">
+                Tanner Training LLC is providing this training and any related materials (including newsletters, blog posts and other communications) for educational purposes only. We are not providing legal, accounting, or financial advisory services, and this is not a solicitation or recommendation to buy or sell any stocks, options, or other financial instruments or investments. Examples that address specific assets, stocks, options or transactions are for illustrative purposes only and may not represent specific trades or transactions that we have conducted. In fact, we may use examples that are different or the opposite of transactions we have conducted or positions we hold. This training is also not intended as a solicitation for any future relationship, business or otherwise, between the students or participants and the trainer. No express or implied warranties are being made with respect to these services and products. All investing and trading in the securities markets involves risk. Any decision to place trades in the financial markets, including trading in stock or options, is a personal decision that should only be made after thorough research, including a personal risk and financial assessment, and the engagement of professional assistance to the extent you believe necessary.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Update copyright year -->
+    <script>
+        document.getElementById('current-year-confirm').textContent = new Date().getFullYear();
+    </script>
+
+</body>
+</html>

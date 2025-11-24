@@ -97,7 +97,14 @@ export class FormSubmissionHandler {
         
         // Small delay to show success state
         setTimeout(() => {
-          window.location.href = `https://go.thecashflowacademy.com/confirmed-income-stacking-fb?_wf_cid=${wfCid}`;
+          // Get redirect URL from page config or use default
+          const redirectUrl = (window.PAGE_CONFIG && window.PAGE_CONFIG.redirectUrl) 
+            ? window.PAGE_CONFIG.redirectUrl 
+            : 'confirmed.html';
+          
+          // Add CID parameter
+          const separator = redirectUrl.includes('?') ? '&' : '?';
+          window.location.href = `${redirectUrl}${separator}_wf_cid=${wfCid}`;
         }, 1500);
       } else {
         throw new Error('No WebinarFuel CID available for redirect');
