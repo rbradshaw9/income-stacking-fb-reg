@@ -46,8 +46,8 @@ export const CONFIG = {
     BASE_URL: 'https://embed.webby.app',
     get API_KEY() { return getPageConfig('webinarfuel.apiKey', getEnvVar('WEBINAR_FUEL_API_KEY', 'Dp2kG9Vucpyq5t5RVPqvDxfU')); },
     SESSIONS: {
-      get TUESDAY() { return getPageConfig('webinarfuel.sessionTuesday', parseInt(getEnvVar('WEBINAR_FUEL_SESSION_TUESDAY', '66235'))); },
-      get SATURDAY() { return getPageConfig('webinarfuel.sessionSaturday', parseInt(getEnvVar('WEBINAR_FUEL_SESSION_SATURDAY', '66238'))); }
+      get TUESDAY() { return getPageConfig('webinarfuel.sessionTuesday', getEnvVar('WEBINAR_FUEL_SESSION_TUESDAY', '66235')); },
+      get SATURDAY() { return getPageConfig('webinarfuel.sessionSaturday', getEnvVar('WEBINAR_FUEL_SESSION_SATURDAY', '66238')); }
     },
     WIDGET: {
       ID: parseInt(getEnvVar('WEBINAR_FUEL_WIDGET_ID', '75117')),
