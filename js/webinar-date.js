@@ -73,13 +73,23 @@ function getSessionIdFromDisplayedDate(dateText) {
  * Supports both single session (new) and day-specific sessions (legacy)
  */
 function getSessionIdFromDate(dateObj) {
+  // Debug: Log what we're seeing
+  console.log('[WF Bridge] Checking session config:', {
+    singleSessionId: CONFIG.WEBINAR_FUEL.SESSION_ID,
+    hasSingleSession: !!CONFIG.WEBINAR_FUEL.SESSION_ID,
+    tuesdaySession: CONFIG.WEBINAR_FUEL.SESSIONS.TUESDAY,
+    saturdaySession: CONFIG.WEBINAR_FUEL.SESSIONS.SATURDAY
+  });
+  
   // NEW: If page uses single session ID for all days, use that
   if (CONFIG.WEBINAR_FUEL.SESSION_ID) {
-    console.log('[WF Bridge] Using single session ID for all days:', CONFIG.WEBINAR_FUEL.SESSION_ID);
+    console.log('[WF Bridge] ✅ Using single session ID for all days:', CONFIG.WEBINAR_FUEL.SESSION_ID);
     return CONFIG.WEBINAR_FUEL.SESSION_ID;
   }
   
   // LEGACY: Fall back to day-specific sessions
+  console.log('[WF Bridge] No single sessionId found, using legacy day-specific sessions');
+  
   if (!dateObj || !dateObj.isValid()) {
     return CONFIG.WEBINAR_FUEL.SESSIONS.TUESDAY; // Default fallback
   }
