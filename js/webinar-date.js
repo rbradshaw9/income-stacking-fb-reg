@@ -7,11 +7,7 @@
 
 /* global dayjs */
 
-// Session configuration
-const SESSIONS = {
-  TUESDAY: '66235',
-  SATURDAY: '66238'
-};
+import { CONFIG } from './config.js';
 
 // Utility function to add ordinal suffix to day numbers
 const ordinal = (n) => (n > 3 && n < 21) ? 'th' : (['th', 'st', 'nd', 'rd'][n % 10] || 'th');
@@ -34,15 +30,15 @@ function parseWFDateText(txt) {
  */
 function getSessionIdFromDate(dateObj) {
   if (!dateObj || !dateObj.isValid()) {
-    return SESSIONS.TUESDAY; // Default fallback
+    return CONFIG.WEBINAR_FUEL.SESSIONS.TUESDAY; // Default fallback
   }
   
   const dayOfWeek = dateObj.format('dddd').toLowerCase();
   
   if (dayOfWeek === 'saturday') {
-    return SESSIONS.SATURDAY;
+    return CONFIG.WEBINAR_FUEL.SESSIONS.SATURDAY;
   } else {
-    return SESSIONS.TUESDAY; // Default to Tuesday for all other days
+    return CONFIG.WEBINAR_FUEL.SESSIONS.TUESDAY; // Default to Tuesday for all other days
   }
 }
 
@@ -130,7 +126,7 @@ function displayFallbackDate() {
   
   // Set fallback session info
   window.webinarDateFormatted = '2025-01-14 8:00 PM';
-  window.webinarSessionId = SESSIONS.TUESDAY;
+  window.webinarSessionId = CONFIG.WEBINAR_FUEL.SESSIONS.TUESDAY;
   window.webinarDayOfWeek = 'Tuesday';
 }
 
