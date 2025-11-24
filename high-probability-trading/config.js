@@ -30,7 +30,3 @@ window.PAGE_CONFIG = {
     seconds: 59
   }
 };
-
-console.log('[Page Config] High-Probability Trading configuration loaded');
-console.log('[Page Config] window.PAGE_CONFIG:', window.PAGE_CONFIG);
-console.log('[Page Config] sessionId value:', window.PAGE_CONFIG?.webinarfuel?.sessionId);

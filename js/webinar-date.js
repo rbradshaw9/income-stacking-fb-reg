@@ -35,7 +35,6 @@ function getSessionIdFromDisplayedDate(dateText) {
   try {
     // NEW: If page uses single session ID for all days, use that
     if (CONFIG.WEBINAR_FUEL.SESSION_ID) {
-      console.log('[WF Bridge] ✅ Using single session ID:', CONFIG.WEBINAR_FUEL.SESSION_ID);
       return CONFIG.WEBINAR_FUEL.SESSION_ID;
     }
     
@@ -51,15 +50,12 @@ function getSessionIdFromDisplayedDate(dateText) {
     
     // Map to session ID from config
     if (dayOfWeek === 'saturday') {
-      console.log('[WF Bridge] ✅ Detected Saturday session from displayed date');
       return CONFIG.WEBINAR_FUEL.SESSIONS.SATURDAY;
     } else if (dayOfWeek === 'tuesday') {
-      console.log('[WF Bridge] ✅ Detected Tuesday session from displayed date');
       return CONFIG.WEBINAR_FUEL.SESSIONS.TUESDAY;
     }
     
     // Default fallback
-    console.log('[WF Bridge] Using default session for day:', dayOfWeek);
     return CONFIG.WEBINAR_FUEL.SESSIONS.TUESDAY;
     
   } catch (error) {
@@ -73,23 +69,12 @@ function getSessionIdFromDisplayedDate(dateText) {
  * Supports both single session (new) and day-specific sessions (legacy)
  */
 function getSessionIdFromDate(dateObj) {
-  // Debug: Log what we're seeing
-  console.log('[WF Bridge] Checking session config:', {
-    singleSessionId: CONFIG.WEBINAR_FUEL.SESSION_ID,
-    hasSingleSession: !!CONFIG.WEBINAR_FUEL.SESSION_ID,
-    tuesdaySession: CONFIG.WEBINAR_FUEL.SESSIONS.TUESDAY,
-    saturdaySession: CONFIG.WEBINAR_FUEL.SESSIONS.SATURDAY
-  });
-  
   // NEW: If page uses single session ID for all days, use that
   if (CONFIG.WEBINAR_FUEL.SESSION_ID) {
-    console.log('[WF Bridge] ✅ Using single session ID for all days:', CONFIG.WEBINAR_FUEL.SESSION_ID);
     return CONFIG.WEBINAR_FUEL.SESSION_ID;
   }
   
   // LEGACY: Fall back to day-specific sessions
-  console.log('[WF Bridge] No single sessionId found, using legacy day-specific sessions');
-  
   if (!dateObj || !dateObj.isValid()) {
     return CONFIG.WEBINAR_FUEL.SESSIONS.TUESDAY; // Default fallback
   }
@@ -97,10 +82,8 @@ function getSessionIdFromDate(dateObj) {
   const dayOfWeek = dateObj.format('dddd').toLowerCase();
   
   if (dayOfWeek === 'saturday') {
-    console.log('[WF Bridge] Using Saturday-specific session:', CONFIG.WEBINAR_FUEL.SESSIONS.SATURDAY);
     return CONFIG.WEBINAR_FUEL.SESSIONS.SATURDAY;
   } else {
-    console.log('[WF Bridge] Using Tuesday-specific session:', CONFIG.WEBINAR_FUEL.SESSIONS.TUESDAY);
     return CONFIG.WEBINAR_FUEL.SESSIONS.TUESDAY; // Default to Tuesday for all other days
   }
 }
