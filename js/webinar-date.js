@@ -26,7 +26,45 @@ function parseWFDateText(txt) {
 }
 
 /**
+ * Gets the session ID from the WebinarFuel widget's displayed date/time
+ * Since users don't select - we auto-show next available - we parse from displayed text
+ * @param {string} dateText - The date text from WebinarFuel widget (e.g., "Tuesday, January 14th 2025 @ 8:00 PM")
+ * @returns {string|null} The session ID based on the displayed date, or null if can't determine
+ */
+function getSessionIdFromDisplayedDate(dateText) {
+  try {
+    // Parse the displayed date
+    const dateObj = parseWFDateText(dateText);
+    if (!dateObj || !dateObj.isValid()) {
+      console.warn('[WF Bridge] Could not parse date text:', dateText);
+      return null;
+    }
+    
+    // Get day of week from the parsed date
+    const dayOfWeek = dateObj.format('dddd').toLowerCase();
+    
+    // Map to session ID from config
+    if (dayOfWeek === 'saturday') {
+      console.log('[WF Bridge] ✅ Detected Saturday session from displayed date');
+      return CONFIG.WEBINAR_FUEL.SESSIONS.SATURDAY;
+    } else if (dayOfWeek === 'tuesday') {
+      console.log('[WF Bridge] ✅ Detected Tuesday session from displayed date');
+      return CONFIG.WEBINAR_FUEL.SESSIONS.TUESDAY;
+    }
+    
+    // Default fallback
+    console.log('[WF Bridge] Using default session for day:', dayOfWeek);
+    return CONFIG.WEBINAR_FUEL.SESSIONS.TUESDAY;
+    
+  } catch (error) {
+    console.error('[WF Bridge] Error determining session from displayed date:', error);
+    return null;
+  }
+}
+
+/**
  * Determine session ID based on the day of the week
+ * This is now a fallback method when we can't read from the widget
  */
 function getSessionIdFromDate(dateObj) {
   if (!dateObj || !dateObj.isValid()) {
@@ -86,7 +124,7 @@ function renderDateTime(dateObj) {
     userTimezoneEl.textContent = `Your time: ${userTime} (${timezoneName})`;
   }
 
-  // Determine and store session information
+  // Determine and store session information from the displayed date
   const sessionId = getSessionIdFromDate(dateObj);
   const dayOfWeek = dateObj.format('dddd');
   
@@ -175,6 +213,13 @@ function watchWFDate(maxRetries = 160) {
     if (raw.includes('@')) {
       const dateObj = parseWFDateText(raw);
       if (dateObj && dateObj.isValid()) {
+        // Determine session ID from the displayed date text
+        const sessionId = getSessionIdFromDisplayedDate(raw);
+        if (sessionId) {
+          window.webinarSessionId = sessionId;
+          console.log('[WF Bridge] ✅ Session ID set from displayed date:', sessionId);
+        }
+        
         renderDateTime(dateObj);
         console.warn('[WebinarDate] Successfully scraped date from WF widget:', raw);
         return;
