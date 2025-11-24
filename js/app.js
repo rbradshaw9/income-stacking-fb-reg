@@ -4,6 +4,7 @@ import { initWebinarDate } from './webinar-date.js';
 import { FormValidator } from './form-validator.js';
 import { FormSubmissionHandler } from './form-submission.js';
 import { URLParameterTracker } from './url-tracker.js';
+import { initDisclaimer } from './disclaimer.js';
 
 /**
  * Main application class for the Income Stacking registration funnel
@@ -34,6 +35,9 @@ class IncomeStackingApp {
 
       // Initialize webinar date functionality
       initWebinarDate();
+
+      // Initialize disclaimer
+      initDisclaimer();
 
       // Initialize form validation
       this.formValidator = new FormValidator('registration-form-element');
