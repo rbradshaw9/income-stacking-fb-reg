@@ -294,9 +294,13 @@ export class FormSubmissionHandler {
     };
 
     try {
-      console.warn('WebinarFuel request:', {
+      console.warn('WebinarFuel API call details:', {
         url: CONFIG.WEBINAR_FUEL.BASE_URL + CONFIG.WEBINAR_FUEL.ENDPOINTS.REGISTER,
-        data: webinarFuelData
+        sessionId: sessionId,
+        widgetId: CONFIG.WEBINAR_FUEL.WIDGET.ID,
+        widgetVersionId: CONFIG.WEBINAR_FUEL.WIDGET.VERSION_ID,
+        apiKey: CONFIG.WEBINAR_FUEL.API_KEY ? '***' + CONFIG.WEBINAR_FUEL.API_KEY.slice(-4) : 'MISSING',
+        fullPayload: webinarFuelData
       });
 
       const response = await fetch(CONFIG.WEBINAR_FUEL.BASE_URL + CONFIG.WEBINAR_FUEL.ENDPOINTS.REGISTER, {
