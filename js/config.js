@@ -55,8 +55,8 @@ export const CONFIG = {
       get SATURDAY() { return getPageConfig('webinarfuel.sessionSaturday', getEnvVar('WEBINAR_FUEL_SESSION_SATURDAY', '66238')); }
     },
     WIDGET: {
-      ID: parseInt(getEnvVar('WEBINAR_FUEL_WIDGET_ID', '75117')),
-      VERSION_ID: parseInt(getEnvVar('WEBINAR_FUEL_WIDGET_VERSION', '126466')),
+      get ID() { return getPageConfig('webinarfuel.widgetId', getEnvVar('WEBINAR_FUEL_WIDGET_ID', '75117')); },
+      get VERSION_ID() { return getPageConfig('webinarfuel.widgetVersion', getEnvVar('WEBINAR_FUEL_WIDGET_VERSION', '126466')); },
       get REGISTRATION() { return getPageConfig('webinarfuel.registrationWidget', getEnvVar('WEBINAR_FUEL_REGISTRATION_WIDGET', 'hgtM93jQogXFn9gdLT1dSjUA')); },
       get HIDDEN_DATE() { return getPageConfig('webinarfuel.widgetId', getEnvVar('WEBINAR_FUEL_HIDDEN_DATE_WIDGET', 'KvKUagFa1nobkfcZGaSK3KiP')); },
       get CONFIRMATION() { return getPageConfig('webinarfuel.confirmationWidget', getEnvVar('WEBINAR_FUEL_CONFIRMATION_WIDGET', 'xCo1kQcuJZKwRwTTXcySfXJc')); }
