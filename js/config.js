@@ -72,6 +72,8 @@ export const CONFIG = {
     get BASE_URL() { return `https://${this.ACCOUNT_ID}.infusionsoft.com`; },
     get FORM_XID() { return getPageConfig('infusionsoft.formXid', getEnvVar('INFUSIONSOFT_FORM_XID', '2d6fbc78abf8d18ab3268c6cfa02e974')); },
     get FORM_NAME() { return getPageConfig('infusionsoft.formName', 'Income Stacking Web Form submitted - FACEBOOK'); },
+    get CONSENT_FIELD_NAME() { return getPageConfig('infusionsoft.consentFieldName', null); },
+    get CONSENT_FIELD_VALUE() { return getPageConfig('infusionsoft.consentFieldValue', 'yes'); },
     VERSION: '1.70.0.858820',
     get SUCCESS_URL() { return getPageConfig('redirectUrl', 'https://go.thecashflowacademy.com/confirmed-income-stacking-fb'); },
     RETURN_URL: window.location.origin + '/confirmed.html',

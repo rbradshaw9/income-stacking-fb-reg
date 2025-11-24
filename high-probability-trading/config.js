@@ -8,7 +8,10 @@ window.PAGE_CONFIG = {
   infusionsoft: {
     formXid: '7d3ead8dd4d0c7908277caa2ead4409f',
     formName: 'WF - The 90% Win Rate Secret - Evergreen Web Form submitted - GHL',
-    accountId: 'yv932'
+    accountId: 'yv932',
+    // TODO: Get the actual consent field name from Infusionsoft form
+    consentFieldName: 'inf_option_BycheckingthisboxIagreetoreceivetextmessagessuchasremindersupdatesandpromotionaloffersfromTheCashFlowAcademyatthemobilenumberprovidedMessageanddataratesmayapplyMessagefrequencyvariesConsentisnotaconditionofpurchaseReplySTOPtounsubscribe',
+    consentFieldValue: '3893'
   },
   
   // WebinarFuel settings for this webinar

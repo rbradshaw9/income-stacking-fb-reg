@@ -185,13 +185,14 @@ export class FormSubmissionHandler {
         inf_field_Email: data.email,
         inf_field_Phone1: data.phone || '',
         inf_field_Custom_CID: cid,
-        // Remove success_url to prevent any redirect
-        ...(data.consent ? {
-          inf_option_BycheckingthisboxIagreetoreceivetextmessagessuchasremindersupdatesandpromotionaloffersfromTheCashFlowAcademyatthemobilenumberprovidedMessageanddataratesmayapplyMessagefrequencyvariesConsentisnotaconditionofpurchaseReplySTOPtounsubscribe: '3893'
-        } : {}),
-        // Only include consent field if checked
         ...trackingParams  // Include all UTM and tracking parameters
       };
+      
+      // Add consent field if checked and configured
+      if (data.consent && CONFIG.INFUSIONSOFT.CONSENT_FIELD_NAME) {
+        infusionsoftData[CONFIG.INFUSIONSOFT.CONSENT_FIELD_NAME] = CONFIG.INFUSIONSOFT.CONSENT_FIELD_VALUE || 'yes';
+        console.warn('Adding consent field:', CONFIG.INFUSIONSOFT.CONSENT_FIELD_NAME, '=', CONFIG.INFUSIONSOFT.CONSENT_FIELD_VALUE || 'yes');
+      }
 
       // Create hidden iframe for form target
       const iframeId = 'hidden-submit-frame';
