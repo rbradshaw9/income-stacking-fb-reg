@@ -13,8 +13,7 @@ window.PAGE_CONFIG = {
   
   // WebinarFuel settings for this webinar
   webinarfuel: {
-    sessionSaturday: '70047',  // Saturday sessions - MUST be string
-    sessionTuesday: '70047',   // Tuesday sessions - use same for all days
+    sessionId: '70047',        // Single session ID for all days/times
     widgetId: '80341',         // Widget ID from URL
     widgetVersion: '132190',   // Widget version from URL
     registrationWidget: 'Mr18Vw5GKr31qNMPbNKJHGmo',

@@ -27,13 +27,19 @@ function parseWFDateText(txt) {
 
 /**
  * Gets the session ID from the WebinarFuel widget's displayed date/time
- * Since users don't select - we auto-show next available - we parse from displayed text
+ * Supports both single session (new) and day-specific sessions (legacy)
  * @param {string} dateText - The date text from WebinarFuel widget (e.g., "Tuesday, January 14th 2025 @ 8:00 PM")
  * @returns {string|null} The session ID based on the displayed date, or null if can't determine
  */
 function getSessionIdFromDisplayedDate(dateText) {
   try {
-    // Parse the displayed date
+    // NEW: If page uses single session ID for all days, use that
+    if (CONFIG.WEBINAR_FUEL.SESSION_ID) {
+      console.log('[WF Bridge] ✅ Using single session ID:', CONFIG.WEBINAR_FUEL.SESSION_ID);
+      return CONFIG.WEBINAR_FUEL.SESSION_ID;
+    }
+    
+    // LEGACY: Parse date and determine session based on day of week
     const dateObj = parseWFDateText(dateText);
     if (!dateObj || !dateObj.isValid()) {
       console.warn('[WF Bridge] Could not parse date text:', dateText);
@@ -64,9 +70,16 @@ function getSessionIdFromDisplayedDate(dateText) {
 
 /**
  * Determine session ID based on the day of the week
- * This is now a fallback method when we can't read from the widget
+ * Supports both single session (new) and day-specific sessions (legacy)
  */
 function getSessionIdFromDate(dateObj) {
+  // NEW: If page uses single session ID for all days, use that
+  if (CONFIG.WEBINAR_FUEL.SESSION_ID) {
+    console.log('[WF Bridge] Using single session ID for all days:', CONFIG.WEBINAR_FUEL.SESSION_ID);
+    return CONFIG.WEBINAR_FUEL.SESSION_ID;
+  }
+  
+  // LEGACY: Fall back to day-specific sessions
   if (!dateObj || !dateObj.isValid()) {
     return CONFIG.WEBINAR_FUEL.SESSIONS.TUESDAY; // Default fallback
   }
@@ -74,8 +87,10 @@ function getSessionIdFromDate(dateObj) {
   const dayOfWeek = dateObj.format('dddd').toLowerCase();
   
   if (dayOfWeek === 'saturday') {
+    console.log('[WF Bridge] Using Saturday-specific session:', CONFIG.WEBINAR_FUEL.SESSIONS.SATURDAY);
     return CONFIG.WEBINAR_FUEL.SESSIONS.SATURDAY;
   } else {
+    console.log('[WF Bridge] Using Tuesday-specific session:', CONFIG.WEBINAR_FUEL.SESSIONS.TUESDAY);
     return CONFIG.WEBINAR_FUEL.SESSIONS.TUESDAY; // Default to Tuesday for all other days
   }
 }

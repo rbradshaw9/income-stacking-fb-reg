@@ -45,6 +45,11 @@ export const CONFIG = {
   WEBINAR_FUEL: {
     BASE_URL: 'https://embed.webby.app',
     get API_KEY() { return getPageConfig('webinarfuel.apiKey', getEnvVar('WEBINAR_FUEL_API_KEY', 'Dp2kG9Vucpyq5t5RVPqvDxfU')); },
+    
+    // New simplified approach: single session ID for all days
+    get SESSION_ID() { return getPageConfig('webinarfuel.sessionId', null); },
+    
+    // Legacy approach: different sessions per day (for backward compatibility)
     SESSIONS: {
       get TUESDAY() { return getPageConfig('webinarfuel.sessionTuesday', getEnvVar('WEBINAR_FUEL_SESSION_TUESDAY', '66235')); },
       get SATURDAY() { return getPageConfig('webinarfuel.sessionSaturday', getEnvVar('WEBINAR_FUEL_SESSION_SATURDAY', '66238')); }

@@ -60,10 +60,14 @@ export class CountdownTimer {
    */
   onCountdownComplete() {
     this.element.textContent = "00:00";
-    // Countdown completed
+    console.log('[Countdown] Timer expired - bonus period ended');
     
-    // Optionally trigger some action when countdown completes
+    // Dispatch event so other components can react
     this.element.dispatchEvent(new CustomEvent('countdownComplete'));
+    
+    // Note: Timer just expires and shows 00:00
+    // Users can still register, they just won't get the "bonus" materials
+    // This creates urgency without blocking registration
   }
 
   /**

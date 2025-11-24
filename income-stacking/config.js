@@ -12,9 +12,11 @@ window.PAGE_CONFIG = {
   },
   
   // WebinarFuel settings for this webinar
+  // Note: This webinar uses different sessions for different days
+  // Most webinars will use single sessionId, but this one is legacy
   webinarfuel: {
-    sessionTuesday: 66235,
-    sessionSaturday: 66238,
+    sessionTuesday: '66235',   // Keep as strings
+    sessionSaturday: '66238',  // Keep as strings
     widgetId: 'KvKUagFa1nobkfcZGaSK3KiP',
     registrationWidget: 'hgtM93jQogXFn9gdLT1dSjUA',
     confirmationWidget: 'xCo1kQcuJZKwRwTTXcySfXJc',
