@@ -142,12 +142,21 @@ export class FormSubmissionHandler {
    */
   extractFormData() {
     const formData = new FormData(this.form);
+    const consent = formData.get('sms_consent') !== null; // Checkbox is present when checked
+    const phone = formData.get('phone')?.trim() || '';
+    
+    console.warn('Form data extraction:', {
+      consent: consent,
+      phone: phone ? 'PROVIDED' : 'EMPTY',
+      phoneLength: phone.length
+    });
+    
     return {
       first_name: formData.get('first_name')?.trim(),
       last_name: formData.get('last_name')?.trim(),
       email: formData.get('email')?.trim(),
-      phone: formData.get('phone')?.trim(),
-      consent: formData.get('sms_consent') === 'on'  // Checkbox value using correct field name
+      phone: phone,
+      consent: consent
     };
   }
 
@@ -189,9 +198,10 @@ export class FormSubmissionHandler {
       };
       
       // Add consent field if checked and configured
+      // Use the exact field name from Infusionsoft form (already includes inf_option_ prefix)
       if (data.consent && CONFIG.INFUSIONSOFT.CONSENT_FIELD_NAME) {
         infusionsoftData[CONFIG.INFUSIONSOFT.CONSENT_FIELD_NAME] = CONFIG.INFUSIONSOFT.CONSENT_FIELD_VALUE || 'yes';
-        console.warn('Adding consent field:', CONFIG.INFUSIONSOFT.CONSENT_FIELD_NAME, '=', CONFIG.INFUSIONSOFT.CONSENT_FIELD_VALUE || 'yes');
+        console.warn('Adding consent field:', CONFIG.INFUSIONSOFT.CONSENT_FIELD_NAME, '=', CONFIG.INFUSIONSOFT.CONSENT_FIELD_VALUE);
       }
 
       // Create hidden iframe for form target
@@ -298,7 +308,7 @@ export class FormSubmissionHandler {
         email: data.email,
         first_name: data.first_name,
         last_name: data.last_name,
-        phone: data.consent ? (data.phone || '') : '',
+        phone: (data.consent && data.phone) ? data.phone : '',
         lead: false,
         registration_source_widget_type: "embed",
         registration_source_widget_name: "Income Stacking Registration",
@@ -321,7 +331,15 @@ export class FormSubmissionHandler {
         widgetId: CONFIG.WEBINAR_FUEL.WIDGET.ID,
         widgetVersionId: CONFIG.WEBINAR_FUEL.WIDGET.VERSION_ID,
         apiKey: CONFIG.WEBINAR_FUEL.API_KEY ? '***' + CONFIG.WEBINAR_FUEL.API_KEY.slice(-4) : 'MISSING',
+        phone: webinarFuelData.viewer.phone ? 'INCLUDED (' + webinarFuelData.viewer.phone.length + ' chars)' : 'EMPTY',
+        consent: webinarFuelData.viewer.consent,
         fullPayload: webinarFuelData
+      });
+      
+      console.warn('Phone/Consent Debug:', {
+        consentChecked: data.consent,
+        phoneProvided: data.phone,
+        phoneBeingSent: webinarFuelData.viewer.phone
       });
 
       const response = await fetch(CONFIG.WEBINAR_FUEL.BASE_URL + CONFIG.WEBINAR_FUEL.ENDPOINTS.REGISTER, {

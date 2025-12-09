@@ -24,7 +24,7 @@ window.PAGE_CONFIG = {
   },
   
   // Redirect URL after successful registration
-  redirectUrl: 'https://go.thecashflowacademy.com/ai-tcfa-success-wf-ghl',
+  redirectUrl: '/ai-takeover/confirmed.html',
   
   // Optional: Custom countdown settings
   countdown: {
