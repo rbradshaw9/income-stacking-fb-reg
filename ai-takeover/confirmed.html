@@ -220,15 +220,19 @@
                 <span>|</span>
                 <a href="https://thecashflowacademy.com/disclaimer" target="_blank" class="hover:text-white transition-colors">Disclaimer</a>
             </div>
-            <p class="text-xs text-gray-500 max-w-4xl mx-auto leading-relaxed">
-                DISCLAIMER: The information provided is for educational purposes only. Results may vary.
-            </p>
+            <p class="text-xs text-gray-500 max-w-4xl mx-auto leading-relaxed" data-disclaimer></p>
         </div>
     </footer>
 
     <!-- Update copyright year -->
     <script>
         document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+    
+    <!-- Load disclaimer module -->
+    <script type="module">
+        import { initDisclaimer } from '../js/disclaimer.js';
+        initDisclaimer();
     </script>
 </body>
 </html>
