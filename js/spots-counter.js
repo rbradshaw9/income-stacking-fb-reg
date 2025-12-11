@@ -24,29 +24,48 @@ export class SpotsCounter {
     const saved = localStorage.getItem(this.storageKey);
     
     if (saved) {
-      const { initialSpots, startTime, seed } = JSON.parse(saved);
-      const minutesElapsed = (Date.now() - startTime) / 1000 / 60;
-      
-      // Add some randomness based on visitor's seed to vary the experience
-      const variance = this.seededRandom(seed) * 5; // 0-5 spot variation
-      const spotsDecreased = Math.floor(minutesElapsed * this.decayRate) + Math.floor(variance);
-      this.currentSpots = Math.max(this.minSpots, initialSpots - spotsDecreased);
-      this.seed = seed;
+      try {
+        const { initialSpots, startTime, seed } = JSON.parse(saved);
+        
+        // Validate saved data
+        if (!initialSpots || !startTime || isNaN(initialSpots)) {
+          throw new Error('Invalid saved data');
+        }
+        
+        const minutesElapsed = (Date.now() - startTime) / 1000 / 60;
+        
+        // Add some randomness based on visitor's seed to vary the experience
+        const variance = this.seededRandom(seed || Math.random()) * 5; // 0-5 spot variation
+        const spotsDecreased = Math.floor(minutesElapsed * this.decayRate) + Math.floor(variance);
+        this.currentSpots = Math.max(this.minSpots, initialSpots - spotsDecreased);
+        this.seed = seed || Math.random();
+      } catch (e) {
+        // If saved data is invalid, reset
+        localStorage.removeItem(this.storageKey);
+        this.initializeNew();
+        return;
+      }
     } else {
-      // First visit - slight variation in starting spots
-      this.seed = Math.random();
-      const startVariation = Math.floor(this.seededRandom(this.seed + 0.5) * 8); // 0-8 variation
-      this.currentSpots = this.baseSpots - startVariation;
-      
-      localStorage.setItem(this.storageKey, JSON.stringify({
-        initialSpots: this.currentSpots,
-        startTime: Date.now(),
-        seed: this.seed
-      }));
+      this.initializeNew();
     }
     
     this.updateDisplay();
     this.startDecay();
+  }
+  
+  /**
+   * Initialize for new visitor
+   */
+  initializeNew() {
+    this.seed = Math.random();
+    const startVariation = Math.floor(this.seededRandom(this.seed + 0.5) * 8); // 0-8 variation
+    this.currentSpots = this.baseSpots - startVariation;
+    
+    localStorage.setItem(this.storageKey, JSON.stringify({
+      initialSpots: this.currentSpots,
+      startTime: Date.now(),
+      seed: this.seed
+    }));
   }
 
   /**
