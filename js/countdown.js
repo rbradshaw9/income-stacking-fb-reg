@@ -1,69 +1,20 @@
 /**
- * Persistent Countdown Timer Class
- * Handles countdown functionality with localStorage persistence
- * Timer remembers visitor and continues from where they left off
+ * Countdown Timer to Webinar Start
+ * Counts down to the actual webinar date/time
  */
 export class CountdownTimer {
   constructor(elementId, options = {}) {
     this.element = document.getElementById(elementId);
-    this.storageKey = options.storageKey || 'countdown_timer';
-    this.initialMinutes = options.minutes || 14;
-    this.initialSeconds = options.seconds || 59;
+    this.targetDate = options.targetDate; // Date object or timestamp
     this.timer = null;
     
     if (!this.element) {
       throw new Error(`Countdown element with id '${elementId}' not found`);
     }
     
-    // Load saved state or initialize new countdown
-    this.loadState();
-  }
-
-  /**
-   * Load countdown state from localStorage
-   */
-  loadState() {
-    const saved = localStorage.getItem(this.storageKey);
-    
-    if (saved) {
-      const { expireTime } = JSON.parse(saved);
-      const now = Date.now();
-      
-      // Calculate remaining time
-      const remainingMs = expireTime - now;
-      
-      if (remainingMs > 0) {
-        // Timer still active - restore remaining time
-        const remainingSeconds = Math.floor(remainingMs / 1000);
-        this.minutes = Math.floor(remainingSeconds / 60);
-        this.seconds = remainingSeconds % 60;
-        console.log(`[Countdown] Restored timer: ${this.minutes}:${this.seconds.toString().padStart(2, '0')} remaining`);
-      } else {
-        // Timer expired
-        this.minutes = 0;
-        this.seconds = 0;
-        console.log('[Countdown] Timer expired (loaded from storage)');
-      }
-    } else {
-      // First visit - start new countdown
-      this.minutes = this.initialMinutes;
-      this.seconds = this.seconds || this.initialSeconds;
-      this.saveState();
-      console.log(`[Countdown] New visitor - starting ${this.minutes}:${this.seconds.toString().padStart(2, '0')} countdown`);
+    if (!this.targetDate) {
+      throw new Error('Target date is required for countdown');
     }
-  }
-
-  /**
-   * Save countdown state to localStorage
-   */
-  saveState() {
-    const totalSeconds = this.minutes * 60 + this.seconds;
-    const expireTime = Date.now() + (totalSeconds * 1000);
-    
-    localStorage.setItem(this.storageKey, JSON.stringify({
-      expireTime,
-      startTime: Date.now()
-    }));
   }
 
   /**
@@ -73,20 +24,7 @@ export class CountdownTimer {
     this.updateDisplay();
     
     this.timer = setInterval(() => {
-      if (this.seconds === 0) {
-        if (this.minutes === 0) {
-          this.stop();
-          this.onCountdownComplete();
-          return;
-        }
-        this.minutes--;
-        this.seconds = 59;
-      } else {
-        this.seconds--;
-      }
-      
       this.updateDisplay();
-      this.saveState();
     }, 1000);
   }
 
@@ -101,43 +39,40 @@ export class CountdownTimer {
   }
 
   /**
-   * Update the display with current time
+   * Update the display with current time remaining
    */
   updateDisplay() {
-    const display = `${this.minutes}:${this.seconds.toString().padStart(2, '0')}`;
-    this.element.textContent = display;
-  }
-
-  /**
-   * Handle countdown completion
-   */
-  onCountdownComplete() {
-    this.element.textContent = "00:00";
-    console.log('[Countdown] Timer expired');
+    const now = new Date().getTime();
+    const target = new Date(this.targetDate).getTime();
+    const remaining = target - now;
     
-    // Dispatch event so other components can react
-    this.element.dispatchEvent(new CustomEvent('countdownComplete'));
-  }
-
-  /**
-   * Reset the countdown to initial values (clear storage)
-   */
-  reset(minutes = 14, seconds = 59) {
-    this.stop();
-    localStorage.removeItem(this.storageKey);
-    this.initialMinutes = minutes;
-    this.initialSeconds = seconds;
-    this.minutes = minutes;
-    this.seconds = seconds;
-    this.saveState();
-    this.updateDisplay();
-    console.log('[Countdown] Timer reset');
+    if (remaining <= 0) {
+      this.element.textContent = "LIVE NOW!";
+      this.stop();
+      return;
+    }
+    
+    const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
+    
+    // Format based on time remaining
+    if (days > 0) {
+      this.element.textContent = `${days}d ${hours}h ${minutes}m`;
+    } else if (hours > 0) {
+      this.element.textContent = `${hours}h ${minutes}m ${seconds}s`;
+    } else {
+      this.element.textContent = `${minutes}m ${seconds}s`;
+    }
   }
 
   /**
    * Get current time remaining in seconds
    */
   getTimeRemaining() {
-    return this.minutes * 60 + this.seconds;
+    const now = new Date().getTime();
+    const target = new Date(this.targetDate).getTime();
+    return Math.max(0, Math.floor((target - now) / 1000));
   }
 }

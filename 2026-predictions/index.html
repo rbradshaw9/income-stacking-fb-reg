@@ -82,7 +82,7 @@
                             <svg class="w-6 h-6 text-white mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
-                            <span class="text-white font-medium">⚡ Your exclusive registration window:</span>
+                            <span class="text-white font-medium">⚡ Training starts in:</span>
                         </div>
                         <div id="countdown" class="text-4xl sm:text-5xl font-black text-white text-center mb-4">
                             14:59
@@ -96,7 +96,7 @@
                             </div>
                         </div>
                         <p class="text-orange-100 text-center text-xs font-medium">
-                            🔥 Timer persists - your window won't reset!
+                            🔥 Exact time until training begins!
                         </p>
                     </div>
                     
@@ -427,11 +427,11 @@
             const formHandler = new InfusionsoftFormHandler('registration-form-element');
             formHandler.initialize();
             
-            // Initialize persistent countdown timer (remembers visitor)
+            // Initialize countdown to webinar start (January 3rd, 2026 at 2:00 PM ET)
+            // ET is UTC-5, so 2:00 PM ET = 7:00 PM UTC (19:00)
+            const webinarDate = new Date('2026-01-03T19:00:00Z');
             const countdown = new CountdownTimer('countdown', {
-                minutes: 14,
-                seconds: 59,
-                storageKey: '2026_predictions_countdown'
+                targetDate: webinarDate
             });
             countdown.start();
             
