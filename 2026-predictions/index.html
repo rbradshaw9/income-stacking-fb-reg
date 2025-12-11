@@ -15,6 +15,22 @@
     <!-- Page-specific configuration (loads first) -->
     <script src="/2026-predictions/config.js"></script>
     
+    <!-- Webinar Timing Redirect Logic -->
+    <script>
+        // Webinar date: January 3rd, 2026 at 2:00 PM ET (7:00 PM UTC)
+        const webinarStartTime = new Date('2026-01-03T19:00:00Z').getTime();
+        const graceperiodMinutes = 30;
+        const gracePeriodMs = graceperiodMinutes * 60 * 1000;
+        
+        const now = Date.now();
+        const timeSinceStart = now - webinarStartTime;
+        
+        // If webinar started more than 30 minutes ago, redirect to replay registration
+        if (timeSinceStart > gracePeriodMs) {
+            window.location.href = '/2026-predictions/replay.html';
+        }
+    </script>
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
