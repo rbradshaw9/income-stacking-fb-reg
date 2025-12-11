@@ -60,9 +60,14 @@ export class CountdownTimer {
     // Format based on time remaining
     if (days > 0) {
       this.element.textContent = `${days}d ${hours}h ${minutes}m`;
+    } else if (hours > 24) {
+      // More than 24 hours but less than a day (shouldn't happen, but safe fallback)
+      this.element.textContent = `${hours}h ${minutes}m`;
     } else if (hours > 0) {
+      // Final 24 hours - show seconds for urgency
       this.element.textContent = `${hours}h ${minutes}m ${seconds}s`;
     } else {
+      // Final hour - show seconds
       this.element.textContent = `${minutes}m ${seconds}s`;
     }
   }
