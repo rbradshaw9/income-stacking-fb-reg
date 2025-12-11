@@ -389,19 +389,25 @@
         document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
     
-    <!-- Load countdown -->
-    <script type="module" src="../js/countdown.js"></script>
-    
     <!-- Load disclaimer -->
     <script type="module" src="../js/disclaimer.js"></script>
     
-    <!-- Load Infusionsoft-only form handler -->
+    <!-- Load Infusionsoft-only form handler and countdown -->
     <script type="module">
         import { InfusionsoftFormHandler } from '../js/infusionsoft-form.js';
+        import { CountdownTimer } from '../js/countdown.js';
         
         document.addEventListener('DOMContentLoaded', () => {
+            // Initialize form handler
             const formHandler = new InfusionsoftFormHandler('registration-form-element');
             formHandler.initialize();
+            
+            // Initialize countdown timer
+            const countdown = new CountdownTimer('countdown', {
+                minutes: 14,
+                seconds: 59
+            });
+            countdown.start();
         });
     </script>
 </body>
