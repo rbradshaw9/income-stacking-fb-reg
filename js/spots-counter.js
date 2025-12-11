@@ -132,4 +132,3 @@ export class SpotsCounter {
     this.initialize();
   }
 }
-}
