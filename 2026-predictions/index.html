@@ -398,16 +398,16 @@
         document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
     
-    <!-- Load disclaimer -->
-    <script type="module" src="../js/disclaimer.js"></script>
-    
     <!-- Load Infusionsoft-only form handler, countdown, and spots counter -->
     <script type="module">
         import { InfusionsoftFormHandler } from '../js/infusionsoft-form.js';
         import { CountdownTimer } from '../js/countdown.js';
         import { SpotsCounter } from '../js/spots-counter.js';
+        import { initDisclaimer } from '../js/disclaimer.js';
         
         document.addEventListener('DOMContentLoaded', () => {
+            // Initialize disclaimer
+            initDisclaimer();
             // Initialize form handler
             const formHandler = new InfusionsoftFormHandler('registration-form-element');
             formHandler.initialize();
