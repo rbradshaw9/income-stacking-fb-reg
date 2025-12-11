@@ -1,17 +1,69 @@
 /**
- * Countdown Timer Class
- * Handles the countdown functionality for bonus material urgency
+ * Persistent Countdown Timer Class
+ * Handles countdown functionality with localStorage persistence
+ * Timer remembers visitor and continues from where they left off
  */
 export class CountdownTimer {
   constructor(elementId, options = {}) {
     this.element = document.getElementById(elementId);
-    this.minutes = options.minutes || 14;
-    this.seconds = options.seconds || 59;
+    this.storageKey = options.storageKey || 'countdown_timer';
+    this.initialMinutes = options.minutes || 14;
+    this.initialSeconds = options.seconds || 59;
     this.timer = null;
     
     if (!this.element) {
       throw new Error(`Countdown element with id '${elementId}' not found`);
     }
+    
+    // Load saved state or initialize new countdown
+    this.loadState();
+  }
+
+  /**
+   * Load countdown state from localStorage
+   */
+  loadState() {
+    const saved = localStorage.getItem(this.storageKey);
+    
+    if (saved) {
+      const { expireTime } = JSON.parse(saved);
+      const now = Date.now();
+      
+      // Calculate remaining time
+      const remainingMs = expireTime - now;
+      
+      if (remainingMs > 0) {
+        // Timer still active - restore remaining time
+        const remainingSeconds = Math.floor(remainingMs / 1000);
+        this.minutes = Math.floor(remainingSeconds / 60);
+        this.seconds = remainingSeconds % 60;
+        console.log(`[Countdown] Restored timer: ${this.minutes}:${this.seconds.toString().padStart(2, '0')} remaining`);
+      } else {
+        // Timer expired
+        this.minutes = 0;
+        this.seconds = 0;
+        console.log('[Countdown] Timer expired (loaded from storage)');
+      }
+    } else {
+      // First visit - start new countdown
+      this.minutes = this.initialMinutes;
+      this.seconds = this.seconds || this.initialSeconds;
+      this.saveState();
+      console.log(`[Countdown] New visitor - starting ${this.minutes}:${this.seconds.toString().padStart(2, '0')} countdown`);
+    }
+  }
+
+  /**
+   * Save countdown state to localStorage
+   */
+  saveState() {
+    const totalSeconds = this.minutes * 60 + this.seconds;
+    const expireTime = Date.now() + (totalSeconds * 1000);
+    
+    localStorage.setItem(this.storageKey, JSON.stringify({
+      expireTime,
+      startTime: Date.now()
+    }));
   }
 
   /**
@@ -21,8 +73,6 @@ export class CountdownTimer {
     this.updateDisplay();
     
     this.timer = setInterval(() => {
-      this.updateDisplay();
-      
       if (this.seconds === 0) {
         if (this.minutes === 0) {
           this.stop();
@@ -34,6 +84,9 @@ export class CountdownTimer {
       } else {
         this.seconds--;
       }
+      
+      this.updateDisplay();
+      this.saveState();
     }, 1000);
   }
 
@@ -60,24 +113,25 @@ export class CountdownTimer {
    */
   onCountdownComplete() {
     this.element.textContent = "00:00";
-    console.log('[Countdown] Timer expired - bonus period ended');
+    console.log('[Countdown] Timer expired');
     
     // Dispatch event so other components can react
     this.element.dispatchEvent(new CustomEvent('countdownComplete'));
-    
-    // Note: Timer just expires and shows 00:00
-    // Users can still register, they just won't get the "bonus" materials
-    // This creates urgency without blocking registration
   }
 
   /**
-   * Reset the countdown to initial values
+   * Reset the countdown to initial values (clear storage)
    */
   reset(minutes = 14, seconds = 59) {
     this.stop();
+    localStorage.removeItem(this.storageKey);
+    this.initialMinutes = minutes;
+    this.initialSeconds = seconds;
     this.minutes = minutes;
     this.seconds = seconds;
+    this.saveState();
     this.updateDisplay();
+    console.log('[Countdown] Timer reset');
   }
 
   /**

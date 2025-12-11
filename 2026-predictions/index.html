@@ -82,14 +82,21 @@
                             <svg class="w-6 h-6 text-white mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
-                            <span class="text-white font-medium">⚡ URGENT: Register in the next</span>
+                            <span class="text-white font-medium">⚡ Your exclusive registration window:</span>
                         </div>
                         <div id="countdown" class="text-4xl sm:text-5xl font-black text-white text-center mb-4">
                             14:59
                         </div>
-                        <p class="text-orange-100 text-center text-sm sm:text-base">
-                            to secure your spot for this exclusive training<br>
-                            <span class="font-bold">(Limited spots available)</span>
+                        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4 mb-2">
+                            <div class="flex items-center justify-center space-x-2">
+                                <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
+                                </svg>
+                                <span class="text-white text-sm">Only <span id="spots-remaining" class="font-black text-xl px-1">47</span> spots left</span>
+                            </div>
+                        </div>
+                        <p class="text-orange-100 text-center text-xs">
+                            ⏰ Timer resets if you leave - spots filling fast!
                         </p>
                     </div>
                     
@@ -392,22 +399,32 @@
     <!-- Load disclaimer -->
     <script type="module" src="../js/disclaimer.js"></script>
     
-    <!-- Load Infusionsoft-only form handler and countdown -->
+    <!-- Load Infusionsoft-only form handler, countdown, and spots counter -->
     <script type="module">
         import { InfusionsoftFormHandler } from '../js/infusionsoft-form.js';
         import { CountdownTimer } from '../js/countdown.js';
+        import { SpotsCounter } from '../js/spots-counter.js';
         
         document.addEventListener('DOMContentLoaded', () => {
             // Initialize form handler
             const formHandler = new InfusionsoftFormHandler('registration-form-element');
             formHandler.initialize();
             
-            // Initialize countdown timer
+            // Initialize persistent countdown timer (remembers visitor)
             const countdown = new CountdownTimer('countdown', {
                 minutes: 14,
-                seconds: 59
+                seconds: 59,
+                storageKey: '2026_predictions_countdown'
             });
             countdown.start();
+            
+            // Initialize spots counter (decreases over time)
+            const spotsCounter = new SpotsCounter('spots-remaining', {
+                baseSpots: 47,
+                decayRate: 0.15,
+                minSpots: 7,
+                storageKey: '2026_predictions_spots'
+            });
         });
     </script>
 </body>
