@@ -33,6 +33,13 @@
         const now = Date.now();
         const timeSinceStart = now - webinarStartTime;
         
+        // Debug logging
+        console.log('Current time:', new Date(now));
+        console.log('Webinar start:', new Date(webinarStartTime));
+        console.log('Time since start (ms):', timeSinceStart);
+        console.log('Grace period (ms):', gracePeriodMs);
+        console.log('Should redirect:', timeSinceStart > gracePeriodMs);
+        
         // If webinar started more than 30 minutes ago, redirect to replay registration
         if (timeSinceStart > gracePeriodMs) {
             window.location.href = '/2026-predictions/replay.html';
