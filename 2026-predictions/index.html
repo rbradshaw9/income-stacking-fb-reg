@@ -25,8 +25,8 @@
     
     <!-- Webinar Timing Redirect Logic -->
     <script>
-        // Webinar date: January 3rd, 2026 at 2:00 PM ET (7:00 PM UTC)
-        const webinarStartTime = new Date('2026-01-03T19:00:00Z').getTime();
+        // Webinar date: January 24th, 2026 at 2:00 PM ET (7:00 PM UTC)
+        const webinarStartTime = new Date('2026-01-24T19:00:00Z').getTime();
         const graceperiodMinutes = 30;
         const gracePeriodMs = graceperiodMinutes * 60 * 1000;
         
@@ -168,7 +168,7 @@
                                     <span class="font-medium text-gray-900">🔴 Live Training:</span>
                                 </div>
                                 <div class="text-blue-800 font-semibold mb-1">
-                                    Saturday, January 3rd, 2026
+                                    Friday, January 24th, 2026
                                 </div>
                                 <div class="text-sm text-blue-700">
                                     2:00 PM ET / 1:00 PM CT / 12:00 PM MT / 11:00 AM PT
@@ -435,9 +435,9 @@
             const formHandler = new InfusionsoftFormHandler('registration-form-element');
             formHandler.initialize();
             
-            // Initialize countdown to webinar start (January 3rd, 2026 at 2:00 PM ET)
+            // Initialize countdown to webinar start (January 24th, 2026 at 2:00 PM ET)
             // ET is UTC-5, so 2:00 PM ET = 7:00 PM UTC (19:00)
-            const webinarDate = new Date('2026-01-03T19:00:00Z');
+            const webinarDate = new Date('2026-01-24T19:00:00Z');
             const countdown = new CountdownTimer('countdown', {
                 targetDate: webinarDate
             });

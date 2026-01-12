@@ -18,7 +18,7 @@ window.PAGE_CONFIG = {
   
   // Webinar details
   webinarDate: {
-    date: 'Saturday, January 3rd, 2026',
+    date: 'Friday, January 24th, 2026',
     time: '2:00 PM Eastern',
     timezone: 'America/New_York'
   },
