@@ -1,0 +1,14 @@
+{
+  "name": "funnel-builder",
+  "version": "1.0.0",
+  "description": "Config-driven funnel generator for webinar registration pages",
+  "type": "module",
+  "scripts": {
+    "build": "node build.js",
+    "test": "node build.js test-funnel"
+  },
+  "dependencies": {
+    "handlebars": "^4.7.8"
+  },
+  "devDependencies": {}
+}
