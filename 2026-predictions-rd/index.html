@@ -23,6 +23,9 @@
     <!-- Page-specific configuration (loads first) -->
     <script src="/2026-predictions-rd/config.js"></script>
     
+    <!-- Infusionsoft Web Tracking Script (handles all referral tracking automatically) -->
+    <script type="text/javascript" src="https://yv932.infusionsoft.app/app/webTracking/getTrackingCode"></script>
+    
     <!-- Webinar Timing Redirect Logic -->
     <script>
         // Webinar date: January 24th, 2026 at 2:00 PM ET (7:00 PM UTC)
@@ -182,24 +185,45 @@
                                 </div>
                             </div>
 
-                            <!-- Registration Form -->
-                            <form id="registration-form-element" class="space-y-4">
+                            <!-- Infusionsoft Registration Form (Native) -->
+                            <form 
+                                accept-charset="UTF-8" 
+                                action="https://yv932.infusionsoft.com/app/form/process/b1bb46a7155595dff8234bd4fe4039ba" 
+                                class="infusion-form space-y-4" 
+                                id="inf_form_b1bb46a7155595dff8234bd4fe4039ba" 
+                                method="POST"
+                            >
+                                <!-- Infusionsoft Hidden Fields -->
+                                <input name="inf_form_xid" type="hidden" value="b1bb46a7155595dff8234bd4fe4039ba" />
+                                <input name="inf_form_name" type="hidden" value="RD - Stock Investing Webclass Jan 2026" />
+                                <input name="infusionsoft_version" type="hidden" value="1.70.0.891957" />
+                                
+                                <!-- Tracking Fields (Infusionsoft scripts auto-populate these) -->
+                                <input name="inf_custom_GaContent" type="hidden" value="" />
+                                <input name="inf_custom_GaSource" type="hidden" value="" />
+                                <input name="inf_custom_GaMedium" type="hidden" value="" />
+                                <input name="inf_custom_GaTerm" type="hidden" value="" />
+                                <input name="inf_custom_GaCampaign" type="hidden" value="" />
+                                <input name="inf_custom_GaCampaignID" type="hidden" value="" />
+                                <input name="inf_custom_GaReferurl" type="hidden" value="" />
+                                <input name="inf_custom_fbclid" type="hidden" value="" />
+                                
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                    <div>
+                                    <div class="infusion-field">
                                         <input 
                                             type="text" 
-                                            name="first_name" 
-                                            id="first_name"
+                                            name="inf_field_FirstName" 
+                                            id="inf_field_FirstName"
                                             placeholder="First Name" 
                                             required
                                             class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-green-500 focus:outline-none transition-colors"
                                         >
                                     </div>
-                                    <div>
+                                    <div class="infusion-field">
                                         <input 
                                             type="text" 
-                                            name="last_name" 
-                                            id="last_name"
+                                            name="inf_field_LastName" 
+                                            id="inf_field_LastName"
                                             placeholder="Last Name" 
                                             required
                                             class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-green-500 focus:outline-none transition-colors"
@@ -207,47 +231,50 @@
                                     </div>
                                 </div>
                                 
-                                <div>
+                                <div class="infusion-field">
                                     <input 
                                         type="email" 
-                                        name="email" 
-                                        id="email"
+                                        name="inf_field_Email" 
+                                        id="inf_field_Email"
                                         placeholder="Email Address" 
                                         required
                                         class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-green-500 focus:outline-none transition-colors"
                                     >
                                 </div>
                                 
-                                <div>
+                                <div class="infusion-field">
                                     <input 
                                         type="tel" 
-                                        name="phone" 
-                                        id="phone"
+                                        name="inf_field_Phone1" 
+                                        id="inf_field_Phone1"
                                         placeholder="Phone Number (Optional)"
                                         class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-green-500 focus:outline-none transition-colors"
                                     >
                                 </div>
 
                                 <!-- SMS Consent -->
-                                <div class="flex items-start space-x-3">
+                                <div class="infusion-field flex items-start space-x-3">
                                     <input 
                                         type="checkbox" 
-                                        id="sms_consent" 
-                                        name="sms_consent"
+                                        id="inf_option_BycheckingthisboxIagreetoreceivetextmessagessuchasremindersupdatesandpromotionaloffersfromTheCashFlowAcademyatthemobilenumberprovidedMessageanddataratesmayapplyMessagefrequencyvariesConsentisnotaconditionofpurchaseReplySTOPtounsubscribe" 
+                                        name="inf_option_BycheckingthisboxIagreetoreceivetextmessagessuchasremindersupdatesandpromotionaloffersfromTheCashFlowAcademyatthemobilenumberprovidedMessageanddataratesmayapplyMessagefrequencyvariesConsentisnotaconditionofpurchaseReplySTOPtounsubscribe"
+                                        value="4149"
                                         class="mt-1 h-5 w-5 text-gray-600 focus:ring-gray-500 border-gray-300 rounded"
                                     >
-                                    <label for="sms_consent" class="text-xs sm:text-sm text-gray-500 leading-relaxed">
+                                    <label for="inf_option_BycheckingthisboxIagreetoreceivetextmessagessuchasremindersupdatesandpromotionaloffersfromTheCashFlowAcademyatthemobilenumberprovidedMessageanddataratesmayapplyMessagefrequencyvariesConsentisnotaconditionofpurchaseReplySTOPtounsubscribe" class="text-xs sm:text-sm text-gray-500 leading-relaxed">
                                         By checking this box, I agree to receive text messages (such as reminders, updates, and promotional offers) from The Cash Flow Academy at the mobile number provided. Message and data rates may apply. Message frequency varies. Consent is not a condition of purchase. Reply <a href="#" class="text-gray-600 underline">STOP</a> to unsubscribe.
                                     </label>
                                 </div>
 
-                                <button 
-                                    type="submit" 
-                                    class="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold py-4 px-6 sm:px-8 rounded-lg transition-all duration-300 transform hover:scale-105 card-shadow text-base sm:text-lg"
-                                >
-                                    <span class="hidden sm:inline">🚀 CLAIM MY FREE SEAT NOW</span>
-                                    <span class="sm:hidden">🚀 CLAIM FREE SEAT</span>
-                                </button>
+                                <div class="infusion-submit">
+                                    <button 
+                                        type="submit" 
+                                        class="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold py-4 px-6 sm:px-8 rounded-lg transition-all duration-300 transform hover:scale-105 card-shadow text-base sm:text-lg"
+                                    >
+                                        <span class="hidden sm:inline">🚀 CLAIM MY FREE SEAT NOW</span>
+                                        <span class="sm:hidden">🚀 CLAIM FREE SEAT</span>
+                                    </button>
+                                </div>
                             </form>
 
                             <p class="text-center text-xs text-gray-500 mt-4">
@@ -428,9 +455,13 @@
         document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
     
-    <!-- Load Infusionsoft-only form handler, countdown, and spots counter -->
+    <!-- Infusionsoft Native Scripts (handles tracking automatically) -->
+    <script type="text/javascript" src="https://yv932.infusionsoft.com/app/timezone/timezoneInputJs?xid=b1bb46a7155595dff8234bd4fe4039ba"></script>
+    <script type="text/javascript" src="https://yv932.infusionsoft.com/js/jquery/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="https://yv932.infusionsoft.app/app/webform/overwriteRefererJs"></script>
+    
+    <!-- Load countdown and spots counter (no custom form handler needed) -->
     <script type="module">
-        import { InfusionsoftFormHandler } from '../js/infusionsoft-form.js';
         import { CountdownTimer } from '../js/countdown.js';
         import { SpotsCounter } from '../js/spots-counter.js';
         import { initDisclaimer } from '../js/disclaimer.js';
@@ -438,9 +469,6 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Initialize disclaimer
             initDisclaimer();
-            // Initialize form handler
-            const formHandler = new InfusionsoftFormHandler('registration-form-element');
-            formHandler.initialize();
             
             // Initialize countdown to webinar start (January 24th, 2026 at 2:00 PM ET)
             // ET is UTC-5, so 2:00 PM ET = 7:00 PM UTC (19:00)
